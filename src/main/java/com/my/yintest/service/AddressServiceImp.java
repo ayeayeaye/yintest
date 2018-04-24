@@ -1,5 +1,6 @@
 package com.my.yintest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +20,13 @@ public class AddressServiceImp implements AddressService {
 	@Override
 	public void saveAddress(Address address) {
 		repository.saveAndFlush(address);
+	}
+
+
+	@Override
+	public ArrayList<Address> getAllAddress() {
+		ArrayList<Address> adList = (ArrayList<Address>) repository.findAll();
+		return adList;
 	}
 
 

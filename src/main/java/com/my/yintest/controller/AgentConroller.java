@@ -3,6 +3,7 @@ package com.my.yintest.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.yintest.javabean.CustomerProfile;
+import com.my.yintest.model.Address;
 import com.my.yintest.repository.CustomerRepository;
 import com.my.yintest.service.AddressService;
 import com.my.yintest.service.CustomerService;
