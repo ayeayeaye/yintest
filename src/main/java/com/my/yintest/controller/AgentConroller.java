@@ -94,6 +94,14 @@ public class AgentConroller {
 		return moView;				
 	}
 	
+	@RequestMapping("locate/all/device")
+	public ModelAndView viewalldevice() {	
+		ModelAndView moView = new ModelAndView("agent-locate-all-device");
+		ArrayList<Address> addList = adddService.getAllAddress();
+		moView.addObject("addList", addList);	
+		return moView;		
+	}
+	
 	private boolean uploadPhoto(MultipartFile nricFile,MultipartFile faceFile,MultipartFile houseFile, HttpServletRequest request)
 			throws IOException  {	
 		
