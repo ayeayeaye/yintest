@@ -102,11 +102,9 @@ public class AgentConroller {
 			throws IOException  {	
 		
 		boolean uploading = true; 
-		//String project_folder_location = "C:/Users/YIN THU AYE/git/ayeayeaye";
-		//String upload_location = project_folder_location +request.getContextPath() +"/src/main/webapp/photo/";
+		String project_folder_location = "C:/Users/YIN THU AYE/git/ayeayeaye";
+		String upload_location = project_folder_location +request.getContextPath() +"/src/main/webapp/photo/";
 
-		/*For live host*/
-		String upload_location = "Desktop";
 		System.out.println("***"+upload_location+"***");
 	
 		try {

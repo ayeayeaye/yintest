@@ -38,13 +38,6 @@ public class Customer {
 	@Column(name="comment")
 	private String comment;
 	
-	@Column(name="cust_use_dev")
-	private int custUseDev;	
-	
-	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="cust_use_dev", insertable=false, updatable=false)
-	private Device devModel;
-	
 	
 	public Customer() {
 		super();
@@ -53,8 +46,7 @@ public class Customer {
 
 
 	public Customer(int custId, String custName, String nric, String mobile, String email, String job, double income,
-			int noAdult, int noChild, String education, String houseType, String comment, int custUseDev,
-			Device devModel) {
+			int noAdult, int noChild, String education, String houseType, String comment, int custUseDev) {
 		super();
 		this.custId = custId;
 		this.custName = custName;
@@ -68,8 +60,6 @@ public class Customer {
 		this.education = education;
 		this.houseType = houseType;
 		this.comment = comment;
-		this.custUseDev = custUseDev;
-		this.devModel = devModel;
 	}
 
 
@@ -216,32 +206,13 @@ public class Customer {
 	}
 
 
-	public int getCustUseDev() {
-		return custUseDev;
-	}
-
-
-	public void setCustUseDev(int custUseDev) {
-		this.custUseDev = custUseDev;
-	}
-
-
-	public Device getDevModel() {
-		return devModel;
-	}
-
-
-	public void setDevModel(Device devModel) {
-		this.devModel = devModel;
-	}
-
 
 	@Override
 	public String toString() {
 		return "Customer [custId=" + custId + ", custName=" + custName + ", nric=" + nric + ", mobile=" + mobile
 				+ ", email=" + email + ", job=" + job + ", income=" + income + ", noAdult=" + noAdult + ", noChild="
 				+ noChild + ", education=" + education + ", houseType=" + houseType + ", comment=" + comment
-				+ ", custUseDev=" + custUseDev + ", devModel=" + devModel + "]";
+				+ "]";
 	}
 
 

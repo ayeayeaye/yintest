@@ -18,12 +18,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<style type="text/css">
+<style type="text/css">
 	.body{
-	margin-top: 75px;
+	margin-top: 85px;
 	margin-left: 78px;
 	}
-	</style>
+
+</style>
 	
 </head>
 <body>
@@ -32,15 +33,11 @@
 
 <div>
 <!-- ======== Header ======== -->
-<%-- <div class="row">
+ <div class="row">
 	<%@include file="Header.jsp"%>
-</div> --%>
+</div> 
 <!-- ======== Body ======== -->	
 		<div class="row">
-			
-<%-- 			<div>
-				<div class="col-md-1"><%@ include file="Menu.jsp"%></div>
-			</div> --%>
 			
 			<div class="col-md-11 body">
 				<spring:message code="${bodyTitle}" />

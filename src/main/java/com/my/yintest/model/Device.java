@@ -39,21 +39,22 @@ public class Device {
 	@Column(name="USB_usage_status")
 	private String USBStatus; 
 	
-/*	@Column(name="dev_by_cust")
+	@Column(name="dev_by_cust")
 	private int devByCust;
 	
 	
 	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="dev_by_customer", insertable=false, updatable=false)
-	private Customer custDevModel;*/
+	@JoinColumn(name="dev_by_cust", insertable=false, updatable=false)
+	private Customer custDevModel;
 	
 	public Device() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Device(int deviceId, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong, String devStatus,
-			String chargeStatus, String dCStatus, String uSBStatus) {
+			String chargeStatus, String dCStatus, String uSBStatus, int devByCust, Customer custDevModel) {
 		super();
 		this.deviceId = deviceId;
 		this.visitTime = visitTime;
@@ -64,7 +65,11 @@ public class Device {
 		this.chargeStatus = chargeStatus;
 		DCStatus = dCStatus;
 		USBStatus = uSBStatus;
+		this.devByCust = devByCust;
+		this.custDevModel = custDevModel;
 	}
+
+
 
 	public int getDeviceId() {
 		return deviceId;
@@ -138,12 +143,32 @@ public class Device {
 		USBStatus = uSBStatus;
 	}
 
+	
+	public int getDevByCust() {
+		return devByCust;
+	}
+
+	public void setDevByCust(int devByCust) {
+		this.devByCust = devByCust;
+	}
+
+
+	public Customer getCustDevModel() {
+		return custDevModel;
+	}
+
+
+	public void setCustDevModel(Customer custDevModel) {
+		this.custDevModel = custDevModel;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Device [deviceId=" + deviceId + ", visitTime=" + visitTime + ", systemTime=" + systemTime + ", GPSLat="
 				+ GPSLat + ", GPSLong=" + GPSLong + ", devStatus=" + devStatus + ", chargeStatus=" + chargeStatus
-				+ ", DCStatus=" + DCStatus + ", USBStatus=" + USBStatus + "]";
+				+ ", DCStatus=" + DCStatus + ", USBStatus=" + USBStatus + ", devByCust=" + devByCust + ", custDevModel="
+				+ custDevModel + "]";
 	}
-
 	
 }

@@ -1,10 +1,12 @@
 package com.my.yintest.controller;
 
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -45,18 +47,9 @@ public class TestConroller {
 	
 	@RequestMapping("locate/all/device")
 	public ModelAndView locatealldevice() {	
-		ModelAndView moView = new ModelAndView("agent-locate-all-device");
-		
-		ArrayList<Customer> upList =cusService.getAllCust();
-		ArrayList<Address> addList = adddService.getAllAddress();
-		ArrayList<Photo> photoList = ptoService.getAllPhoto();
-		
-		List<CustomerProfile> custProList = new ArrayList<CustomerProfile>();
-		for (int i = 0; i < upList.size(); i++) {
-			custProList.add(new CustomerProfile(upList.get(i), photoList.get(i), addList.get(i)));
-		}
-				
-		moView.addObject("custProList", custProList);	
+		ModelAndView moView = new ModelAndView("agent-locate-all-device");			
+		moView.addObject("custProList", retrieveAllCustomerProfile());
+		moView.addObject("devList", deviceService.getAllDevice());
 		return moView;		
 	}
 	
@@ -74,12 +67,23 @@ public class TestConroller {
 		return moView;		
 	}
 	
-/*	@RequestMapping(value="added/device",method=RequestMethod.POST)
-	public String addedDeviceP(@ModelAttribute ("dev") Device device) {	
+	@RequestMapping(value="added/device",method=RequestMethod.POST)
+	public ModelAndView addedDeviceP(@ModelAttribute ("dev") Device device) {	
+		
+		ModelAndView moView = new ModelAndView("success");
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		device.setVisitTime(timestamp);
+		
+		Date date = getitngTodayDate(); 
+		device.setSystemTime(date);
+		
+/*		moView.addObject("timestamp", timestamp);
+		moView.addObject("date", date);*/
 		
 		deviceService.saveDevice(device);
-		return "success";		
-	}*/
+		return moView;		
+	}
 	
 /*	@RequestMapping("visit/device")
 	public ModelAndView viewalldevice() {	
@@ -98,6 +102,25 @@ public class TestConroller {
 		useService.saveUsage(use);
 		return "success";		
 	}*/
+	
+	/*Methods*/
+	
+	public ArrayList<CustomerProfile> retrieveAllCustomerProfile()
+	{
+		ArrayList<Customer> upList =cusService.getAllCust();
+		ArrayList<Address> addList = adddService.getAllAddress();
+		ArrayList<Photo> photoList = ptoService.getAllPhoto();
+		ArrayList<Device> devList = deviceService.getAllDevice();
+		
+		ArrayList<CustomerProfile> custProList = new ArrayList<CustomerProfile>();
+		for (int i = 0; i < upList.size(); i++) {
+			custProList.add(new CustomerProfile(upList.get(i), photoList.get(i), addList.get(i), devList.get(i)));
+		}
+		
+		return custProList;
+	}
+	
+
 	
 	public Date getitngTodayDate()
 	{

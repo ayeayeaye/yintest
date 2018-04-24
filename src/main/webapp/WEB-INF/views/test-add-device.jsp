@@ -16,7 +16,12 @@ devStatus :
 chargeStatus : <form:input path="chargeStatus"/><br/>
 DCStatus : <form:input path="DCStatus"/><br/> 
 USBStatus : <form:input path="USBStatus"/><br/> 
-
+devByCust : 
+<form:select path="devByCust"> 
+	<c:forEach var="cust" items="${cusList}">
+		<form:option value="${cust.custId}" label="${cust.custName}" ></form:option>
+	</c:forEach>
+</form:select>
 <br/>
 
 <form:button name="Submit">Register Device (Test)</form:button>	

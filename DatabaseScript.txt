@@ -31,7 +31,7 @@ CREATE TABLE `customer_address` (
   PRIMARY KEY (`address_id`),
   KEY `address_by_customer_idx` (`add_by_customer`),
   CONSTRAINT `add_by_customer` FOREIGN KEY (`add_by_customer`) REFERENCES `customer_list` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `customer_address` (
 
 LOCK TABLES `customer_address` WRITE;
 /*!40000 ALTER TABLE `customer_address` DISABLE KEYS */;
+INSERT INTO `customer_address` VALUES (1,'Paya Laber','1.349785 ','103.89906',1),(2,'Clementi','1.312849915207918','103.76547824266208',2),(3,'Ang Mo Kio','1.367902','103.844153',3),(4,'Bishan','1.3525845','103.83521159999998',4);
 /*!40000 ALTER TABLE `customer_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +65,7 @@ CREATE TABLE `customer_list` (
   `house_type` varchar(50) DEFAULT NULL,
   `comment` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +74,7 @@ CREATE TABLE `customer_list` (
 
 LOCK TABLES `customer_list` WRITE;
 /*!40000 ALTER TABLE `customer_list` DISABLE KEYS */;
+INSERT INTO `customer_list` VALUES (1,'May','hgh','342344','fgg','dfssf',12,212,23,'sfd',NULL,'fsf'),(2,'Su','aaaaa','aaaaa','aaaaa','aaaaaa',111111111,11111,11111111,'aaaaaaaa',NULL,'ssssss'),(3,'Mary','bbb','22222','bbbb','bbb',222,22,22,'bb',NULL,'bbbbbbbbbb'),(4,'Suzan','S123456N','1234567','suzan@gmail.com','sdasd',23,231,312,'asadadad','adadad','adadad');
 /*!40000 ALTER TABLE `customer_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +94,7 @@ CREATE TABLE `customer_photo` (
   PRIMARY KEY (`photo_id`),
   KEY `cust_by_photo_idx` (`cust_by_photo`),
   CONSTRAINT `cust_by_photo` FOREIGN KEY (`cust_by_photo`) REFERENCES `customer_list` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +103,7 @@ CREATE TABLE `customer_photo` (
 
 LOCK TABLES `customer_photo` WRITE;
 /*!40000 ALTER TABLE `customer_photo` DISABLE KEYS */;
+INSERT INTO `customer_photo` VALUES (1,'download1.jpg','download2.jpg','download3.jpg',1),(2,'a1.jpg','a2.jpg','a3.jpg',2),(3,'b1.jpg','b2.jpg','b3.jpg',3),(4,'d1.png','d2.png','d3.jpg',4);
 /*!40000 ALTER TABLE `customer_photo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,13 +116,19 @@ DROP TABLE IF EXISTS `device_list`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `device_list` (
   `device_id` int(11) NOT NULL AUTO_INCREMENT,
+  `visit_time` timestamp NULL DEFAULT NULL,
+  `system_time` datetime DEFAULT NULL,
+  `GPS_Lat` varchar(45) DEFAULT NULL,
+  `GPS_Long` varchar(45) DEFAULT NULL,
   `device_status` varchar(10) DEFAULT NULL,
   `charging_status` varchar(45) DEFAULT NULL,
-  `dev_by_customer` int(11) DEFAULT NULL,
+  `DC_usage_status` varchar(45) DEFAULT NULL,
+  `USB_usage_status` varchar(45) DEFAULT NULL,
+  `dev_by_cust` int(11) DEFAULT NULL,
   PRIMARY KEY (`device_id`),
-  KEY `dev_by_customer_idx` (`dev_by_customer`),
-  CONSTRAINT `dev_by_customer` FOREIGN KEY (`dev_by_customer`) REFERENCES `customer_list` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `dev_customer_idx` (`dev_by_cust`),
+  CONSTRAINT `dev_by_cust` FOREIGN KEY (`dev_by_cust`) REFERENCES `customer_list` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +137,7 @@ CREATE TABLE `device_list` (
 
 LOCK TABLES `device_list` WRITE;
 /*!40000 ALTER TABLE `device_list` DISABLE KEYS */;
+INSERT INTO `device_list` VALUES (1,'2018-04-24 15:03:18','2018-04-24 00:00:00','16.8660694','96.19513200000006','On','10mA','100mA','1000mA',2),(2,'2018-04-24 15:07:00','2018-04-24 00:00:00','21.9588282','96.08910319999995','On','9mA','90mA','900mA',1),(3,'2018-04-24 15:49:18','2018-04-24 00:00:00','17.3220711, ','96.4663286, ','Off','16mA','116mA','1666mA',3),(4,'2018-04-24 15:50:07','2018-04-24 00:00:00','16.7753609','94.73810129999993','On','36mA','273mA','1942mA',4);
 /*!40000 ALTER TABLE `device_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,33 +174,6 @@ CREATE TABLE `payment_history` (
 LOCK TABLES `payment_history` WRITE;
 /*!40000 ALTER TABLE `payment_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `payment_history` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `usage`
---
-
-DROP TABLE IF EXISTS `usage`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usage` (
-  `usage_id` int(11) NOT NULL AUTO_INCREMENT,
-  `visit_time` datetime NOT NULL,
-  `count` int(11) DEFAULT NULL,
-  `use_by_device` int(11) NOT NULL,
-  PRIMARY KEY (`usage_id`),
-  KEY `by_device_idx` (`use_by_device`),
-  CONSTRAINT `use_by_device` FOREIGN KEY (`use_by_device`) REFERENCES `device_list` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usage`
---
-
-LOCK TABLES `usage` WRITE;
-/*!40000 ALTER TABLE `usage` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -231,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-24  0:25:07
+-- Dump completed on 2018-04-25  1:38:03

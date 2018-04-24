@@ -54,7 +54,6 @@ function initialize() {
                 '<p><b>Name</b>:<c:out value="${cuspro.customer.custName}" /></p>' + 
                 '<p><b>NRIC</b>:<c:out value="${cuspro.customer.nric}" /></p>'+
                 '<p><b>MOBILE</b>:<c:out value="${cuspro.customer.mobile}" /></p>' + 
-                '<p><b>Device ID</b>:<c:out value="${cuspro.customer.devModel.deviceId}" /></p>' + 
             '</div>'] ,
            
             
@@ -63,14 +62,17 @@ function initialize() {
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
     
-     // Loop through our array of markers & place each one on the map  
+	<c:set var="mark" value="onMarker.png"/>
+  
+     // Loop through our array of markers & place each one on the map     
     for( i = 0; i < markers.length; i++ ) {
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
         marker = new google.maps.Marker({
             position: position,
             map: map,
-            title: markers[i][0]
+            title: markers[i][0],
+            icon : "<%= request.getContextPath()%>/logo/${mark}"
         }); 
         
          // Allow each marker to have an info window    

@@ -2,6 +2,7 @@ package com.my.yintest.javabean;
 
 import com.my.yintest.model.Address;
 import com.my.yintest.model.Customer;
+import com.my.yintest.model.Device;
 import com.my.yintest.model.Photo;
 
 public class CustomerProfile {
@@ -9,6 +10,7 @@ public class CustomerProfile {
 	Customer customer = new Customer();
 	Photo photo = new Photo();
 	Address address = new Address();
+	Device device = new Device();
 
 	
 		
@@ -17,13 +19,12 @@ public class CustomerProfile {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public CustomerProfile(Customer customer, Photo photo, Address address) {
+	public CustomerProfile(Customer customer, Photo photo, Address address, Device device) {
 		super();
 		this.customer = customer;
 		this.photo = photo;
 		this.address = address;
+		this.device = device;
 	}
 
 
@@ -64,10 +65,21 @@ public class CustomerProfile {
 
 
 
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
 	@Override
 	public String toString() {
-		return "CustomerProfile [customer=" + customer + ", photo=" + photo + ", address=" + address + "]";
+		return "CustomerProfile [customer=" + customer + ", photo=" + photo + ", address=" + address + ", device="
+				+ device + "]";
 	}
+
+
 
 	
 	
