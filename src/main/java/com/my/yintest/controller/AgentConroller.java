@@ -22,13 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.yintest.javabean.CustomerProfile;
 import com.my.yintest.model.Address;
+import com.my.yintest.model.Device;
 import com.my.yintest.repository.CustomerRepository;
 import com.my.yintest.service.AddressService;
 import com.my.yintest.service.CustomerService;
+import com.my.yintest.service.DeviceService;
 import com.my.yintest.service.PhotoService;
-
-
-
 
 @Controller
 @RequestMapping("/agent")
@@ -40,6 +39,8 @@ public class AgentConroller {
 	AddressService adddService;
 	@Autowired
 	PhotoService ptoService;
+	@Autowired
+	DeviceService deviceService;
 	
 	@RequestMapping("/register/customer")
 	public ModelAndView createNewCustomer() {		
@@ -73,7 +74,7 @@ public class AgentConroller {
 			else
 			{
 		        //save UserProfile
-				cusService.saveUser(custPro.getCust());	       
+				cusService.saveUser(custPro.getCustomer());	       
 		        //To add/update foreign key after saving parent  
 		        int maxUseId = cusService.getLastCustId();
 	
@@ -88,7 +89,7 @@ public class AgentConroller {
 		        ptoService.savePhoto(custPro.getPhoto());
 				
 				moView.setViewName("success");
-				moView.addObject("userName", custPro.getCust().getCustName());
+				moView.addObject("userName", custPro.getCustomer().getCustName());
 			}
 		
         }
@@ -96,13 +97,6 @@ public class AgentConroller {
 		return moView;				
 	}
 	
-	@RequestMapping("locate/all/device")
-	public ModelAndView viewalldevice() {	
-		ModelAndView moView = new ModelAndView("agent-locate-all-device");
-		ArrayList<Address> addList = adddService.getAllAddress();
-		moView.addObject("addList", addList);	
-		return moView;		
-	}
 	
 	private boolean uploadPhoto(MultipartFile nricFile,MultipartFile faceFile,MultipartFile houseFile, HttpServletRequest request)
 			throws IOException  {	

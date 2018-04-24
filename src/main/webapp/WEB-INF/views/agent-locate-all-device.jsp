@@ -16,6 +16,7 @@
     <div id="map_canvas" class="mapping"></div>
 </div>
 
+
 <script>
 jQuery(function($) {
     // Asynchronously Load the map API 
@@ -36,23 +37,28 @@ function initialize() {
     map.setTilt(45);
    
         var markers = [
-            <c:forEach var="row" items="${addList}" varStatus="status">
-                    ['<c:out value="${row.roadName}" />',
-                <c:out value="${row.lat}" />,
-                <c:out value="${row.longt}" />,
+            <c:forEach var="cuspro" items="${custProList}" varStatus="status">
+                    ['<c:out value="${cuspro.customer.custName}" />',
+                <c:out value="${cuspro.address.lat}" />,
+                <c:out value="${cuspro.address.longt}" />,
                     ],
             </c:forEach>];  
-      
-    // Info Window Content    
-    var infoWindowContent = [
-    	<c:forEach var="add" items="${addList}" varStatus="status">
-    	
-        ['<div class="info_content">' +
-            '<p> <c:out value="${add.custAddModel.custName}" /> <br> <c:out value="${add.custAddModel.nric}" /> <br> <c:out value="${add.custAddModel.mobile}" /></p>' +
-        '</div>'] ,
-       
+ 
         
-        </c:forEach>];
+    // Info Window Content    
+        var infoWindowContent = [
+        	<c:forEach var="cuspro" items="${custProList}" varStatus="status">
+        	
+            ['<img style="float:left; width:200px; " src="<%= request.getContextPath()%>/photo/${cuspro.photo.facePhoto}">'+
+            	'<div class="info_content"style="margin-left:220px; margin-bottom:20px;" >' +
+                '<p><b>Name</b>:<c:out value="${cuspro.customer.custName}" /></p>' + 
+                '<p><b>NRIC</b>:<c:out value="${cuspro.customer.nric}" /></p>'+
+                '<p><b>MOBILE</b>:<c:out value="${cuspro.customer.mobile}" /></p>' + 
+                '<p><b>Device ID</b>:<c:out value="${cuspro.customer.devModel.deviceId}" /></p>' + 
+            '</div>'] ,
+           
+            
+            </c:forEach>];
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -67,14 +73,14 @@ function initialize() {
             title: markers[i][0]
         }); 
         
-        // Allow each marker to have an info window    
+         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent(infoWindowContent[i][0]);
                 infoWindow.open(map, marker);
             }
-        })(marker, i));
-
+        })(marker, i)); 
+        
         // Automatically center the map fitting all markers on the screen
         map.fitBounds(bounds);
     }

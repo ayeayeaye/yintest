@@ -6,9 +6,10 @@ import com.my.yintest.model.Photo;
 
 public class CustomerProfile {
 
-	Customer cust = new Customer();
+	Customer customer = new Customer();
 	Photo photo = new Photo();
 	Address address = new Address();
+
 	
 		
 	public CustomerProfile() {
@@ -17,22 +18,26 @@ public class CustomerProfile {
 	}
 
 
-	public CustomerProfile(Customer cust, Photo photo, Address address) {
+
+	public CustomerProfile(Customer customer, Photo photo, Address address) {
 		super();
-		this.cust = cust;
+		this.customer = customer;
 		this.photo = photo;
 		this.address = address;
 	}
 
 
-	public Customer getCust() {
-		return cust;
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
 
-	public void setCust(Customer cust) {
-		this.cust = cust;
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
+
 
 
 	public Photo getPhoto() {
@@ -40,9 +45,11 @@ public class CustomerProfile {
 	}
 
 
+
 	public void setPhoto(Photo photo) {
 		this.photo = photo;
 	}
+
 
 
 	public Address getAddress() {
@@ -50,15 +57,18 @@ public class CustomerProfile {
 	}
 
 
+
 	public void setAddress(Address address) {
 		this.address = address;
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "CustomerProfile [cust=" + cust + ", photo=" + photo + ", address=" + address + "]";
+		return "CustomerProfile [customer=" + customer + ", photo=" + photo + ", address=" + address + "]";
 	}
+
 	
 	
 	

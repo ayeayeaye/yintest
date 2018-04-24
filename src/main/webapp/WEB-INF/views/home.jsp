@@ -10,7 +10,9 @@
  	<h1>This is My HOME.</h1>
  	
  	<a href="${pageContext.request.contextPath}/agent/register/customer">Register Customer</a><br/>
- 	<a href="${pageContext.request.contextPath}/agent/locate/all/device">View all devices</a>
+ 	<a href="${pageContext.request.contextPath}/test/locate/all/device">Locate all devices (Test)</a><br/>
+ 	<hr>
+ 	<a href="${pageContext.request.contextPath}/test/add/device">Add devices (Test)</a><br/>
  	
  	
 </body>

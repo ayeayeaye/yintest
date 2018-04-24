@@ -1,5 +1,6 @@
 package com.my.yintest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,11 @@ public class CustomerSericeImp implements CustomerService {
 	public int getLastCustId() {
 		int lastCustId = repository.getLastCustId();
 		return lastCustId;
+	}
+
+	@Override
+	public ArrayList<Customer> getAllCust() {
+		ArrayList<Customer> custList = (ArrayList<Customer>) repository.findAll();
+		return custList;
 	}
 }

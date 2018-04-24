@@ -31,6 +31,7 @@ public class Address {
 	@JoinColumn(name="add_by_customer", insertable=false, updatable=false)
 	private Customer custAddModel;;
 	
+	
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub

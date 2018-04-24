@@ -123,7 +123,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations(
 				"/resources/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+		registry.addResourceHandler("/logo/**").addResourceLocations("/logo/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
 		registry.addResourceHandler("/photo/**").addResourceLocations("/photo/");

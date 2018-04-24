@@ -30,7 +30,7 @@ public class Photo {
 	private int custByPhoto;
 	
 	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="photobyuser", insertable=false, updatable=false)
+	@JoinColumn(name="cust_by_photo", insertable=false, updatable=false)
 	private Customer custPtoModel;
 
 	public Photo() {
