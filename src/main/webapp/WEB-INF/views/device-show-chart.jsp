@@ -2,7 +2,8 @@
 
 <style>
 #map_wrap {
-    height: 700px;
+	width: 100%;
+    height: 90%;
 }
 
 #map_can {
@@ -30,28 +31,40 @@ jQuery(function($) {
 function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
-    var mapOptions = {
-        mapTypeId: 'roadmap'
-    };
+    var mapOptions = { mapTypeId: 'roadmap' };
                     
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("map_can"), mapOptions);
     map.setTilt(45);
    
         var markers = [
-            <c:forEach var="dev" items="${devList}" varStatus="status">
-                ['<c:out value="${dev.deviceId}" />',
-                <c:out value="${dev.GPSLat}" />,
-                <c:out value="${dev.GPSLong}" />,
+            <c:forEach var="custPro" items="${custProList}" varStatus="status">
+                ['DeviceID = <c:out value="${custPro.device.deviceId}" />',
+/*                 <c:out value="${custPro.device.GPSLat}" />,
+                   <c:out value="${custPro.device.GPSLong}" />, */
+                    <c:out value="${custPro.address.lat}" />,
+                    <c:out value="${custPro.address.longt}" />,
+                    '<c:out value="${custPro.device.devStatus}" />',
                     ],
             </c:forEach>];  
  
 
     // Info Window Content    
         var infoWindowContent = [
-        	<c:forEach var="dev" items="${devList}" varStatus="status">
+        	<c:forEach var="custPro" items="${custProList}" varStatus="status">
         	
-            ['<div id = "container" style = "width: 400px; height: 350px; margin: 0 auto">' +
+            ['<img style="float:left; width:150px;height: 100px; border: solid 1px;" src="<%= request.getContextPath()%>/photo/${custPro.photo.facePhoto}">'+
+            '<div class="info_content"style="width: 490px; height: 100px; margin-left:160px;" >'+
+
+             '<p>Device ID:<b><c:out value="${custPro.device.deviceId}" /></b></p>'+
+             '<p>Customer ID:<b><c:out value="${custPro.customer.custId}" />(<c:out value="${custPro.customer.custName}" />)</b></p>'+
+             '<p>Customer Address:<b><c:out value="${custPro.address.roadName}" /></b></p>'+
+             
+            '</div>'+
+            '<hr>'+
+            '<div id = "container1" style = " float:left; width: 300px; height: 300px; border:solid 1px;">' +
+            '</div>'+
+            '<div id = "container2" style = " float:right; width: 300px; height: 300px; border:solid 1px;">' +         
             '</div>'] ,
            
             
@@ -67,17 +80,30 @@ function initialize() {
 	
      // Loop through our array of markers & place each one on the map     
     for( i = 0; i < markers.length; i++ ) {
-
+        
     	var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
 
         marker = new google.maps.Marker({
             position: position,
             map: map,
-            title: markers[i][0]
+            title: markers[i][0],
+
+            
         }); 
 
-        	//marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        
+        var devst = markers[i][3];
+        if(devst == 'On')
+    	{
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    	}
+        else
+        {
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        }
+        
+       
 			
 
         
@@ -87,23 +113,69 @@ function initialize() {
                 infoWindow.setContent(infoWindowContent[i][0]);
                 infoWindow.open(map, marker);	
                
-                var title = {
+                var title1 = {
                         text: 'This is the title'   
                      };
-                     var subtitle = {
+                     var subtitle1 = {
                         text: 'This is subtitle'
                      };
-                     var xAxis = {
+                     var xAxis1 = {
                         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                      };
-                     var yAxis = {
+                     var yAxis1 = {
+                        title: {
+                           text: 'mA1'
+                        }
+                     };                     
+
+                     var plotOptions1 = {
+                        line: {
+                           dataLabels: {
+                              enabled: false
+                           },  
+                           color:'#f45042',                        	  
+                           enableMouseTracking: true
+                        }
+                     };
+/* 				     var plotLines1= {
+							color: '#f45042'
+					}; */
+                     var series1 = [{
+                           name: 'Example device',
+                           data: [1111,888, 1266, 1415, 1812, 1115, 1512, 1665, 1983, 1183, 1309, 1186]
+                        }
+                     ];
+                
+                     var json1 = {};
+                     json1.title = title1;
+                     json1.subtitle = subtitle1;
+                     json1.xAxis = xAxis1;
+                     json1.yAxis = yAxis1;  
+                     json1.series = series1;
+                     json1.plotOptions = plotOptions1;
+
+                     
+                     $('#container1').highcharts(json1); 
+                     
+                     //2-Start
+                 var title2 = {
+                        text: 'This is the title 2'   
+                     };
+                     var subtitle2 = {
+                        text: 'This is subtitle 2'
+                     };
+                     var xAxis2 = {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                     };
+                     var yAxis2 = {
                         title: {
                            text: 'mA'
                         }
                      };
 
-                     var plotOptions = {
+                     var plotOptions2 = {
                         line: {
                            dataLabels: {
                               enabled: false
@@ -111,21 +183,23 @@ function initialize() {
                            enableMouseTracking: true
                         }
                      };
-                     var series = [{
+                     var series2 = [{
                            name: 'Example device',
-                           data: [1111,888, 1266, 1415, 1812, 1115, 1512, 1665, 1983, 1183, 1309, 1186]
+                           data: [1311, 1188, 1196, 1115, 1983, 1186, 1115, 1512, 1665, 1812, 1183, 1309 ]
                         }
                      ];
                 
-                     var json = {};
-                     json.title = title;
-                     json.subtitle = subtitle;
-                     json.xAxis = xAxis;
-                     json.yAxis = yAxis;  
-                     json.series = series;
-                     json.plotOptions = plotOptions;
+                     var json2 = {};
+                     json2.title = title2;
+                     json2.subtitle = subtitle2;
+                     json2.xAxis = xAxis2;
+                     json2.yAxis = yAxis2;  
+                     json2.series = series2;
+                     json2.plotOptions = plotOptions2;
                      
-                     $('#container').highcharts(json); 
+                     $('#container2').highcharts(json2); 
+                     
+                     //2-End
             }
         })
 

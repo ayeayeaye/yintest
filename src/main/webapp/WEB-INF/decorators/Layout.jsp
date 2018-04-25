@@ -21,7 +21,6 @@
 <style type="text/css">
 	.body{
 	margin-top: 85px;
-	margin-left: 78px;
 	}
 
 </style>
@@ -39,7 +38,7 @@
 <!-- ======== Body ======== -->	
 		<div class="row">
 			
-			<div class="col-md-11 body">
+			<div class="col-md-12 body">
 				<spring:message code="${bodyTitle}" />
 				<dec:body />
 			</div>

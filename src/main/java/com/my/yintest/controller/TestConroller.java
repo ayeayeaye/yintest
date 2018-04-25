@@ -88,8 +88,9 @@ public class TestConroller {
 	@RequestMapping("show/chart")
 	public ModelAndView viewalldevice() {	
 		ModelAndView moView = new ModelAndView("device-show-chart");
-		ArrayList<Device> devList = deviceService.getAllDevice();
-		moView.addObject("devList", devList);
+/*		ArrayList<Device> devList = deviceService.getAllDevice();
+		moView.addObject("devList", devList);*/
+		moView.addObject("custProList", retrieveAllCustomerProfile());
 		return moView;		
 	}
 	
