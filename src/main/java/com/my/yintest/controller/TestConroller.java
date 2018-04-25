@@ -32,7 +32,7 @@ import com.my.yintest.service.PhotoService;
 
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/test/device")
 public class TestConroller {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class TestConroller {
 	DeviceService deviceService;
 
 	
-	@RequestMapping("locate/all/device")
+	@RequestMapping("locate/all")
 	public ModelAndView locatealldevice() {	
 		ModelAndView moView = new ModelAndView("agent-locate-all-device");			
 		moView.addObject("custProList", retrieveAllCustomerProfile());
@@ -59,7 +59,7 @@ public class TestConroller {
 		return moView;		
 	}
 	
-	@RequestMapping("add/device")
+	@RequestMapping("add")
 	public ModelAndView addDevice() {	
 		ModelAndView moView = new ModelAndView("test-add-device");
 		moView.addObject("dev", new Device());
@@ -85,13 +85,13 @@ public class TestConroller {
 		return moView;		
 	}
 	
-/*	@RequestMapping("visit/device")
+	@RequestMapping("show/chart")
 	public ModelAndView viewalldevice() {	
-		ModelAndView moView = new ModelAndView("view-all-device");
+		ModelAndView moView = new ModelAndView("device-show-chart");
 		ArrayList<Device> devList = deviceService.getAllDevice();
 		moView.addObject("devList", devList);
 		return moView;		
-	}*/
+	}
 	
 /*	@RequestMapping(value="visited/device/{deviceId}")
 	public String visiteddevice(@PathVariable Integer deviceId,  HttpSession session) {	

@@ -17,7 +17,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/hello")
 	public String createtSignup(){
-		return "index";		
+		return "z";		
 	}
 
 }

@@ -50,8 +50,6 @@
             json.plotOptions = plotOptions;
             
             $('#container').highcharts(json); 
+            
          });
       </script>
-   </body>
-   
-</html>
