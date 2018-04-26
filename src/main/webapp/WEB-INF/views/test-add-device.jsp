@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <h1>For testing</h1>
-<form:form action="${pageContext.request.contextPath}/test/added/device" commandName="dev" method="POST">
+<form:form action="${pageContext.request.contextPath}/test/device/added" commandName="dev" method="POST">
 
 
 GPSLat : <form:input path="GPSLat"/><br/> 

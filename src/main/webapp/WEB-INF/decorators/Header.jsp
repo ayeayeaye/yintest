@@ -11,17 +11,13 @@
     left: 0;
     overflow-x: hidden;
     background-color: #f7f8f9;
-}
-.header h1
-{
-   color: #80acf2;
 } 
+ 
 </style>
 
 <div class="header">
-	<h1>
-		YOUR HEADER
-	</h1>
+
+	<img style="float:left;" src="<%= request.getContextPath()%>/logo/MainLogo.png">
 
 </div>
 

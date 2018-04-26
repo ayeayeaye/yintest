@@ -1,29 +1,60 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<form:form action="${pageContext.request.contextPath}/agent/registered/customer" commandName="custPro" method="POST" enctype="multipart/form-data" >
-
+<form action="${pageContext.request.contextPath}/agent/registered/customer" method="POST" enctype="multipart/form-data">
 	
-custName : <form:input path="customer.custName"/><br/>
-nric : <form:input path="customer.nric"/><br/>
-mobile : <form:input path="customer.mobile"/><br/>
-email : <form:input path="customer.email"/><br/>
-
-roadName : <form:input path="address.roadName"/><br/>
-lat : <form:input path="address.lat"/><br/>
-longt : <form:input path="address.longt"/><br/>
-
-nricPhoto : <input type="file" name="nricFile"/><br/>
-facePhoto : <input type="file" name="faceFile"/><br/>
-housePhoto : <input type="file" name="houseFile"/><br/>
-
-job : <form:input path="customer.job"/><br/>
-income : <form:input path="customer.income"/><br/>
-noAdult : <form:input path="customer.noAdult"/><br/>
-noChild : <form:input path="customer.noChild"/><br/>
-education : <form:input path="customer.education"/><br/>
-houseType : <form:input path="customer.houseType"/><br/> 
-comment : <form:input path="customer.comment"/><br/>
-
-<form:button name="Submit">Register</form:button>	
 	
-</form:form>	
+	<spring:bind path="custNew.custName">
+		custName : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.nric">
+		nric : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.mobile">
+		mobile : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.email">
+		email : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.job">
+		job : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.income">
+		income : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+	
+	<spring:bind path="custNew.noAdult">
+		noAdult : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>	<spring:bind path="custNew.noChild">
+		noChild : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.education">
+		education : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="custNew.houseType">
+		houseType : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+	<spring:bind path="custNew.comment">
+		comment : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+	
+	
+	<spring:bind path="addressNew.roadName">
+		roadName : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+		<spring:bind path="addressNew.lat">
+		lat : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>	
+	<spring:bind path="addressNew.longt">
+		longt : <input type="text" name="${status.expression}" value="${status.value}"/><br/>
+	</spring:bind>
+
+	nricPhoto : <input type="file" name="nricFile"/><br/>
+	facePhoto : <input type="file" name="faceFile"/><br/>
+	housePhoto : <input type="file" name="houseFile"/><br/>
+	
+	
+	<input type="submit" value="Create"/>
+	
+	
+</form>	

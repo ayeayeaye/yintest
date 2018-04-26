@@ -38,53 +38,27 @@ function initialize() {
     map.setTilt(45);
    
         var markers = [
-			            <c:forEach var="address" items="${addressList}" varStatus="status">
-			                [
-			                '<c:out value="${address.custAddModel.custName}" />',
-			                <c:out value="${address.lat}" />,
-			                <c:out value="${address.longt}" />,
-			                ],
-			            </c:forEach>
-                     ];  
-
+            <c:forEach var="cuspro" items="${custProList}" varStatus="status">
+                    ['<c:out value="${cuspro.customer.custName}" />',
+                <c:out value="${cuspro.address.lat}" />,
+                <c:out value="${cuspro.address.longt}" />,
+                    ],
+            </c:forEach>];  
+ 
         
-    // Info Window Content 
-    	 var infoWindowContent1 = [
-						    		<c:forEach var="photo" items="${photoList}" varStatus="status">		        	
-						        		[
-						        			'<img style="float:left; width:200px; " src="<%= request.getContextPath()%>/photo/${photo.facePhoto}"/>'      				 
-						       			] ,						
-						   		   </c:forEach>
-        			           ];
-    
-  	var infoWindowContent2 = [
-			        		<c:forEach var="address" items="${addressList}" varStatus="status">		        	
-			            		[
-			            			'<div class="info_content"style="margin-left:220px; margin-bottom:20px;" >' +
-			                		'<p><b>Name</b>:<c:out value="${address.custAddModel.custName}" /></p>' + 
-			                		'<p><b>NRIC</b>:<c:out value="${address.custAddModel.nric}" /></p>'+
-			                		'<p><b>MOBILE</b>:<c:out value="${address.custAddModel.mobile}" /></p>' + 
-			           				 '</div>' 
-			           				 
-			           			] ,
-    
-		           		 </c:forEach>
-			            	];
-    
-
-    
-<%--         var infoWindowContent = [
-        	<c:forEach var="address" items="${addressList}" varStatus="status">
+    // Info Window Content    
+        var infoWindowContent = [
+        	<c:forEach var="cuspro" items="${custProList}" varStatus="status">
         	
             ['<img style="float:left; width:200px; " src="<%= request.getContextPath()%>/photo/${cuspro.photo.facePhoto}">'+
             	'<div class="info_content"style="margin-left:220px; margin-bottom:20px;" >' +
-                '<p><b>Name</b>:<c:out value="${address.custAddModel.custName}" /></p>' + 
-                '<p><b>NRIC</b>:<c:out value="${address.custAddModel.nric}" /></p>'+
-                '<p><b>MOBILE</b>:<c:out value="${address.custAddModel.mobile}" /></p>' + 
+                '<p><b>Name</b>:<c:out value="${cuspro.customer.custName}" /></p>' + 
+                '<p><b>NRIC</b>:<c:out value="${cuspro.customer.nric}" /></p>'+
+                '<p><b>MOBILE</b>:<c:out value="${cuspro.customer.mobile}" /></p>' + 
             '</div>'] ,
            
             
-            </c:forEach>]; --%>
+            </c:forEach>];
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -105,7 +79,7 @@ function initialize() {
          // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(infoWindowContent1[i][0]+infoWindowContent2[i][0] );
+                infoWindow.setContent(infoWindowContent[i][0]);
                 infoWindow.open(map, marker);
             }
         })(marker, i)); 

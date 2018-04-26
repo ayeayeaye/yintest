@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,13 +45,11 @@ public class TestConroller {
 	@Autowired
 	DeviceService deviceService;
 
-	
 	@RequestMapping("locate/all")
-	public ModelAndView locatealldevice() {	
-		ModelAndView moView = new ModelAndView("agent-locate-all-device");			
-		moView.addObject("custProList", retrieveAllCustomerProfile());
-		moView.addObject("devList", deviceService.getAllDevice());
-		return moView;		
+	public String locatealldevice(Model model) {	
+		model.addAttribute("addressList", adddService.getAllAddress());		
+		model.addAttribute("photoList", ptoService.getAllPhoto()); 
+		return "agent-locate-all-device";		
 	}
 	
 	@RequestMapping("highchart")
@@ -58,20 +57,22 @@ public class TestConroller {
 		ModelAndView moView = new ModelAndView("testHC");
 		return moView;		
 	}
-	
+
 	@RequestMapping("add")
-	public ModelAndView addDevice() {	
-		ModelAndView moView = new ModelAndView("test-add-device");
-		moView.addObject("dev", new Device());
-		moView.addObject("cusList", cusService.getAllCust());
-		return moView;		
+	public String addDevice(Model model) {	
+		model.addAttribute("dev", new Device());
+		model.addAttribute("cusList", cusService.getAllCust());
+		return "test-add-device";		
 	}
 	
-	@RequestMapping(value="added/device",method=RequestMethod.POST)
-	public ModelAndView addedDeviceP(@ModelAttribute ("dev") Device device) {	
-		
-		ModelAndView moView = new ModelAndView("success");
-		
+	@RequestMapping(value="added",method=RequestMethod.GET)
+	public String addedDeviceG(Model model) {		
+		return "test-add-device";	
+	}
+	
+	@RequestMapping(value="added",method=RequestMethod.POST)
+	public String addedDeviceP(Model model,@ModelAttribute ("dev") Device device) {	
+				
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		device.setVisitTime(timestamp);
 		
@@ -82,7 +83,7 @@ public class TestConroller {
 		moView.addObject("date", date);*/
 		
 		deviceService.saveDevice(device);
-		return moView;		
+		return "success";		
 	}
 	
 	@RequestMapping("show/chart")
@@ -93,16 +94,6 @@ public class TestConroller {
 		moView.addObject("custProList", retrieveAllCustomerProfile());
 		return moView;		
 	}
-	
-/*	@RequestMapping(value="visited/device/{deviceId}")
-	public String visiteddevice(@PathVariable Integer deviceId,  HttpSession session) {	
-		
-		Usage use = new Usage();
-		use.setUseByDevice(deviceId);
-		use.setVisitTime(getitngTodayDate());
-		useService.saveUsage(use);
-		return "success";		
-	}*/
 	
 	/*Methods*/
 	
@@ -122,7 +113,6 @@ public class TestConroller {
 	}
 	
 
-	
 	public Date getitngTodayDate()
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

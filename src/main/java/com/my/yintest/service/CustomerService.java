@@ -9,5 +9,6 @@ public interface CustomerService {
 	void saveUser(Customer cust);
 	int getLastCustId();
 	ArrayList<Customer> getAllCust();
+	Customer getCustomer(Integer id);
 
 }

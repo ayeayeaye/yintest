@@ -46,7 +46,7 @@ public class Customer {
 
 
 	public Customer(int custId, String custName, String nric, String mobile, String email, String job, double income,
-			int noAdult, int noChild, String education, String houseType, String comment, int custUseDev) {
+			int noAdult, int noChild, String education, String houseType, String comment) {
 		super();
 		this.custId = custId;
 		this.custName = custName;

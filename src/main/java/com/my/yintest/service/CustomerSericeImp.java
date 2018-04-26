@@ -11,8 +11,13 @@ import com.my.yintest.repository.CustomerRepository;
 @Service
 public class CustomerSericeImp implements CustomerService {
 
+	
+	private CustomerRepository repository;
+	
 	@Resource
-	CustomerRepository repository;
+	public void setRepository(CustomerRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public void saveUser(Customer cust) {
@@ -29,5 +34,11 @@ public class CustomerSericeImp implements CustomerService {
 	public ArrayList<Customer> getAllCust() {
 		ArrayList<Customer> custList = (ArrayList<Customer>) repository.findAll();
 		return custList;
+	}
+
+	@Override
+	public Customer getCustomer(Integer id) {
+		Customer acustomer = repository.getCustomer(id);
+		return acustomer;
 	}
 }
