@@ -120,5 +120,6 @@ function initialize() {
         google.maps.event.removeListener(boundsListener);
     });
     
+    
 }
 </script>

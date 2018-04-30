@@ -11,12 +11,18 @@
  	
  	<a href="${pageContext.request.contextPath}/agent/register/customer">Register Customer</a><br/>
  	<a href="${pageContext.request.contextPath}/agent/view/all/customer">Agent View All Customer</a><br/>
+ 	<a href="${pageContext.request.contextPath}/dashboard/view">Dashboard</a><br/>
+ 	
  	
  	<hr>
- 	<a href="${pageContext.request.contextPath}/test/device/locate/all">Locate all devices(Test)</a><br/> 	
- 	<a href="${pageContext.request.contextPath}/test/device/add">Add devices (Test)</a><br/>
+ 	<a href="${pageContext.request.contextPath}/device/generate/dummy"> Generate dummy data for adding device</a><br/>
+ 	
+ 	<hr>
+ 	<%-- <a href="${pageContext.request.contextPath}/test/device/locate/all">Locate all devices(Test)</a><br/>  --%>	
+ 	<%-- <a href="${pageContext.request.contextPath}/test/device/add">Add devices (Test)</a><br/> --%>
  	<a href="${pageContext.request.contextPath}/test/device/show/chart">Show chart (Example)</a><br/>
  	<%-- <a href="${pageContext.request.contextPath}/hello">test</a><br/> --%>
+ 	
 
  	
  	

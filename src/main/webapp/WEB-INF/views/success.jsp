@@ -1,9 +1,7 @@
 
 
 Successfully registered.
-<br>
-${timestamp} 
-<br>
-${date}
 
-aaa = ${aaa}
+<br>
+
+ 	<a href="${pageContext.request.contextPath}">Home</a><br/>

@@ -25,8 +25,8 @@ public class Device {
 	@Column(name="device_id")
 	private int deviceId;	
 	
-	@Column(name="usage_time")
-	private String usagetime; 
+	@Column(name="usage_command")
+	private String usageCommand; 
 	
 	@Column(name="visit_time")
 	private Timestamp visitTime;
@@ -69,12 +69,12 @@ public class Device {
 
 
 
-	public Device(int deviceId, String usagetime, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong,
+	public Device(int deviceId, String usageCommand, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong,
 			String devStatus, String chargeStatus, String dCStatus, String uSBStatus, String batteryStatus,
 			int devByCust, Customer deviceCustModel, List<Payment> devPaymentList) {
 		super();
 		this.deviceId = deviceId;
-		this.usagetime = usagetime;
+		this.usageCommand = usageCommand;
 		this.visitTime = visitTime;
 		this.systemTime = systemTime;
 		GPSLat = gPSLat;
@@ -98,13 +98,13 @@ public class Device {
 		this.deviceId = deviceId;
 	}
 
-	public String getUsagetime() {
-		return usagetime;
+	public String getUsageCommand() {
+		return usageCommand;
 	}
 
 
-	public void setUsagetime(String usagetime) {
-		this.usagetime = usagetime;
+	public void setUsageCommand(String usageCommand) {
+		this.usageCommand = usageCommand;
 	}
 	
 	public Timestamp getVisitTime() {
@@ -213,7 +213,7 @@ public class Device {
 
 	@Override
 	public String toString() {
-		return "Device [deviceId=" + deviceId + ", usagetime=" + usagetime + ", visitTime=" + visitTime
+		return "Device [deviceId=" + deviceId + ", usageCommand=" + usageCommand + ", visitTime=" + visitTime
 				+ ", systemTime=" + systemTime + ", GPSLat=" + GPSLat + ", GPSLong=" + GPSLong + ", devStatus="
 				+ devStatus + ", chargeStatus=" + chargeStatus + ", DCStatus=" + DCStatus + ", USBStatus=" + USBStatus
 				+ ", batteryStatus=" + batteryStatus + ", devByCust=" + devByCust + ", deviceCustModel="
