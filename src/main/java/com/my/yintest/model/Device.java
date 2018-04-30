@@ -1,13 +1,18 @@
 package com.my.yintest.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,6 +24,9 @@ public class Device {
 	@Id
 	@Column(name="device_id")
 	private int deviceId;	
+	
+	@Column(name="usage_time")
+	private String usagetime; 
 	
 	@Column(name="visit_time")
 	private Timestamp visitTime;
@@ -38,14 +46,19 @@ public class Device {
 	private String DCStatus; 
 	@Column(name="USB_usage_status")
 	private String USBStatus; 
+	@Column(name="battery_usage_status")
+	private String batteryStatus; 
 	
 	@Column(name="dev_by_cust")
 	private int devByCust;
 	
 	
-	@OneToOne (cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="dev_by_cust", insertable=false, updatable=false)
-	private Customer custDevModel;
+	private Customer deviceCustModel;
+	
+	@OneToMany(mappedBy = "payDeviceModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Payment> devPaymentList = new ArrayList<Payment>();
 	
 	public Device() {
 		super();
@@ -53,10 +66,15 @@ public class Device {
 	}
 
 
-	public Device(int deviceId, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong, String devStatus,
-			String chargeStatus, String dCStatus, String uSBStatus, int devByCust, Customer custDevModel) {
+
+
+
+	public Device(int deviceId, String usagetime, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong,
+			String devStatus, String chargeStatus, String dCStatus, String uSBStatus, String batteryStatus,
+			int devByCust, Customer deviceCustModel, List<Payment> devPaymentList) {
 		super();
 		this.deviceId = deviceId;
+		this.usagetime = usagetime;
 		this.visitTime = visitTime;
 		this.systemTime = systemTime;
 		GPSLat = gPSLat;
@@ -65,10 +83,11 @@ public class Device {
 		this.chargeStatus = chargeStatus;
 		DCStatus = dCStatus;
 		USBStatus = uSBStatus;
+		this.batteryStatus = batteryStatus;
 		this.devByCust = devByCust;
-		this.custDevModel = custDevModel;
+		this.deviceCustModel = deviceCustModel;
+		this.devPaymentList = devPaymentList;
 	}
-
 
 
 	public int getDeviceId() {
@@ -79,6 +98,15 @@ public class Device {
 		this.deviceId = deviceId;
 	}
 
+	public String getUsagetime() {
+		return usagetime;
+	}
+
+
+	public void setUsagetime(String usagetime) {
+		this.usagetime = usagetime;
+	}
+	
 	public Timestamp getVisitTime() {
 		return visitTime;
 	}
@@ -153,22 +181,43 @@ public class Device {
 	}
 
 
-	public Customer getCustDevModel() {
-		return custDevModel;
+	public String getBatteryStatus() {
+		return batteryStatus;
 	}
 
 
-	public void setCustDevModel(Customer custDevModel) {
-		this.custDevModel = custDevModel;
+	public void setBatteryStatus(String batteryStatus) {
+		this.batteryStatus = batteryStatus;
 	}
 
+
+	public Customer getDeviceCustModel() {
+		return deviceCustModel;
+	}
+
+
+	public void setDeviceCustModel(Customer deviceCustModel) {
+		this.deviceCustModel = deviceCustModel;
+	}
+
+
+	
+	public List<Payment> getDevPaymentList() {
+		return devPaymentList;
+	}
+
+
+	public void setDevPaymentList(List<Payment> devPaymentList) {
+		this.devPaymentList = devPaymentList;
+	}
 
 	@Override
 	public String toString() {
-		return "Device [deviceId=" + deviceId + ", visitTime=" + visitTime + ", systemTime=" + systemTime + ", GPSLat="
-				+ GPSLat + ", GPSLong=" + GPSLong + ", devStatus=" + devStatus + ", chargeStatus=" + chargeStatus
-				+ ", DCStatus=" + DCStatus + ", USBStatus=" + USBStatus + ", devByCust=" + devByCust + ", custDevModel="
-				+ custDevModel + "]";
+		return "Device [deviceId=" + deviceId + ", usagetime=" + usagetime + ", visitTime=" + visitTime
+				+ ", systemTime=" + systemTime + ", GPSLat=" + GPSLat + ", GPSLong=" + GPSLong + ", devStatus="
+				+ devStatus + ", chargeStatus=" + chargeStatus + ", DCStatus=" + DCStatus + ", USBStatus=" + USBStatus
+				+ ", batteryStatus=" + batteryStatus + ", devByCust=" + devByCust + ", deviceCustModel="
+				+ deviceCustModel + ", devPaymentList=" + devPaymentList + "]";
 	}
 	
 }

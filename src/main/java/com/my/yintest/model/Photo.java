@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,9 +30,9 @@ public class Photo {
 	@Column(name="cust_by_photo")
 	private int custByPhoto;
 	
-	@OneToOne (cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_by_photo", insertable=false, updatable=false)
-	private Customer custPtoModel;
+	private Customer photoCusModel;
 
 	public Photo() {
 		super();
@@ -41,14 +42,14 @@ public class Photo {
 	
 
 	public Photo(int photoId, String nricPhoto, String facePhoto, String housePhoto, int custByPhoto,
-			Customer custPtoModel) {
+			Customer photoCusModel) {
 		super();
 		this.photoId = photoId;
 		this.nricPhoto = nricPhoto;
 		this.facePhoto = facePhoto;
 		this.housePhoto = housePhoto;
 		this.custByPhoto = custByPhoto;
-		this.custPtoModel = custPtoModel;
+		this.photoCusModel = photoCusModel;
 	}
 
 
@@ -94,14 +95,14 @@ public class Photo {
 	}
 
 
-	public Customer getCustPtoModel() {
-		return custPtoModel;
+	public Customer getPhotoCusModel() {
+		return photoCusModel;
 	}
 
 
 
-	public void setCustPtoModel(Customer custPtoModel) {
-		this.custPtoModel = custPtoModel;
+	public void setPhotoCusModel(Customer photoCusModel) {
+		this.photoCusModel = photoCusModel;
 	}
 
 
@@ -109,7 +110,7 @@ public class Photo {
 	@Override
 	public String toString() {
 		return "Photo [photoId=" + photoId + ", nricPhoto=" + nricPhoto + ", facePhoto=" + facePhoto + ", housePhoto="
-				+ housePhoto + ", custByPhoto=" + custByPhoto + ", custPtoModel=" + custPtoModel + "]";
+				+ housePhoto + ", custByPhoto=" + custByPhoto + ", photoCusModel=" + photoCusModel + "]";
 	}
 
 }

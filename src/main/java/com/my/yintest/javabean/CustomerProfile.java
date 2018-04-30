@@ -11,7 +11,6 @@ public class CustomerProfile {
 	Photo photo = new Photo();
 	Address address = new Address();
 	Device device = new Device();
-
 	
 		
 	public CustomerProfile() {
@@ -64,7 +63,6 @@ public class CustomerProfile {
 	}
 
 
-
 	public Device getDevice() {
 		return device;
 	}
@@ -79,9 +77,4 @@ public class CustomerProfile {
 				+ device + "]";
 	}
 
-
-
-	
-	
-	
 }

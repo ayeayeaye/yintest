@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,9 +28,9 @@ public class Address {
 	@Column(name="add_by_customer")
 	private int addByCust;
 	
-	@OneToOne (cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="add_by_customer", insertable=false, updatable=false)
-	private Customer custAddModel;;
+	private Customer addressCustModel;;
 	
 	
 	public Address() {
@@ -38,14 +39,14 @@ public class Address {
 	}
 
 
-	public Address(int addressId, String roadName, String lat, String longt, int addByCust, Customer custAddModel) {
+	public Address(int addressId, String roadName, String lat, String longt, int addByCust, Customer addressCustModel) {
 		super();
 		this.addressId = addressId;
 		this.roadName = roadName;
 		this.lat = lat;
 		this.longt = longt;
 		this.addByCust = addByCust;
-		this.custAddModel = custAddModel;
+		this.addressCustModel = addressCustModel;
 	}
 
 
@@ -92,20 +93,20 @@ public class Address {
 
 	
 
-	public Customer getCustAddModel() {
-		return custAddModel;
+	public Customer getAddressCustModel() {
+		return addressCustModel;
 	}
 
 
-	public void setCustAddModel(Customer custAddModel) {
-		this.custAddModel = custAddModel;
+	public void setAddressCustModel(Customer addressCustModel) {
+		this.addressCustModel = addressCustModel;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", roadName=" + roadName + ", lat=" + lat + ", longt=" + longt
-				+ ", addByCust=" + addByCust + ", custAddModel=" + custAddModel + "]";
+				+ ", addByCust=" + addByCust + ", addressCustModel=" + addressCustModel + "]";
 	}
 	
 }

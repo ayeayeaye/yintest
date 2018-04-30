@@ -5,3 +5,5 @@ Successfully registered.
 ${timestamp} 
 <br>
 ${date}
+
+aaa = ${aaa}

@@ -20,7 +20,7 @@
 	
 <style type="text/css">
 	.body{
-	margin-top: 85px;
+	margin-top: 10px;;
 	}
 
 </style>
@@ -32,9 +32,9 @@
 
 <div>
 <!-- ======== Header ======== -->
- <div class="row">
+<%--  <div class="row">
 	<%@include file="Header.jsp"%>
-</div> 
+</div>  --%>
 <!-- ======== Body ======== -->	
 		<div class="row">
 			

@@ -3,7 +3,7 @@
 <style>
 #map_wrapper {
 	width: 100%;
-    height: 90%;
+    height: 100%;
 }
 
 #map_canvas {
@@ -40,7 +40,7 @@ function initialize() {
         var markers = [
 			            <c:forEach var="address" items="${addressList}" varStatus="status">
 			                [
-			                '<c:out value="${address.custAddModel.custName}" />',
+			                '<c:out value="${address.addressCustModel.custName}" />',
 			                <c:out value="${address.lat}" />,
 			                <c:out value="${address.longt}" />,
 			                ],
@@ -61,9 +61,9 @@ function initialize() {
 			        		<c:forEach var="address" items="${addressList}" varStatus="status">		        	
 			            		[
 			            			'<div class="info_content"style="margin-left:220px; margin-bottom:20px;" >' +
-			                		'<p><b>Name</b>:<c:out value="${address.custAddModel.custName}" /></p>' + 
-			                		'<p><b>NRIC</b>:<c:out value="${address.custAddModel.nric}" /></p>'+
-			                		'<p><b>MOBILE</b>:<c:out value="${address.custAddModel.mobile}" /></p>' + 
+			                		'<p><b>Name</b>:<c:out value="${address.addressCustModel.custName}" /></p>' + 
+			                		'<p><b>NRIC</b>:<c:out value="${address.addressCustModel.nric}" /></p>'+
+			                		'<p><b>MOBILE</b>:<c:out value="${address.addressCustModel.mobile}" /></p>' + 
 			           				 '</div>' 
 			           				 
 			           			] ,
@@ -78,9 +78,9 @@ function initialize() {
         	
             ['<img style="float:left; width:200px; " src="<%= request.getContextPath()%>/photo/${cuspro.photo.facePhoto}">'+
             	'<div class="info_content"style="margin-left:220px; margin-bottom:20px;" >' +
-                '<p><b>Name</b>:<c:out value="${address.custAddModel.custName}" /></p>' + 
-                '<p><b>NRIC</b>:<c:out value="${address.custAddModel.nric}" /></p>'+
-                '<p><b>MOBILE</b>:<c:out value="${address.custAddModel.mobile}" /></p>' + 
+                '<p><b>Name</b>:<c:out value="${address.addressCustModel.custName}" /></p>' + 
+                '<p><b>NRIC</b>:<c:out value="${address.addressCustModel.nric}" /></p>'+
+                '<p><b>MOBILE</b>:<c:out value="${address.addressCustModel.mobile}" /></p>' + 
             '</div>'] ,
            
             

@@ -3,7 +3,9 @@ package com.my.yintest.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,12 +28,15 @@ import com.my.yintest.javabean.CustomerProfile;
 import com.my.yintest.model.Address;
 import com.my.yintest.model.Customer;
 import com.my.yintest.model.Device;
+import com.my.yintest.model.Payment;
 import com.my.yintest.model.Photo;
 import com.my.yintest.repository.CustomerRepository;
 import com.my.yintest.service.AddressService;
 import com.my.yintest.service.CustomerService;
 import com.my.yintest.service.DeviceService;
+import com.my.yintest.service.PaymentService;
 import com.my.yintest.service.PhotoService;
+
 
 @Controller
 @RequestMapping("/agent")
@@ -39,12 +45,13 @@ public class AgentConroller {
 /*	@Autowired
 	CustomerService cusService;*/
 	@Autowired
-	AddressService adddService;
+	AddressService addService;
 	@Autowired
 	PhotoService ptoService;
 	@Autowired
 	DeviceService deviceService;
-	
+	@Autowired
+	PaymentService payService;
 	
 	private CustomerService cusService;
 	
@@ -91,7 +98,7 @@ public class AgentConroller {
 	
 		        //save Address
 		        address.setAddByCust(maxUseId);
-		        adddService.saveAddress(address);
+		        addService.saveAddress(address);
 		        //save Photo
 		        Photo photo = new Photo();
 		        photo.setCustByPhoto(maxUseId);
@@ -109,6 +116,50 @@ public class AgentConroller {
 		return modelView;				
 	}
 	
+	@RequestMapping("/view/all/customer")
+	public String viewAllCustomer(Model model) {
+		model.addAttribute("addList", addService.getAllAddress());
+		return "agent-view-all-customer" ;		
+	}
+	@RequestMapping(value="/customer/detail/{custId}")
+	public String viewAUserInfo(Model model, @PathVariable Integer custId,  HttpSession session){
+		model.addAttribute("cust", cusService.getCustomer(custId));		
+		model.addAttribute("newPayment", new Payment());
+		return "agent-customer-details";
+	}
+
+	@RequestMapping("/paid/{deviceId}")
+	public String customPaidForDevice(Model model,  @ModelAttribute ("newPayment") Payment payment,  @PathVariable Integer deviceId,  HttpSession session) {
+		//get Device for calculation
+		List<Payment> payListbyDev =payService.findPaymentbyDeviceId(deviceId);
+				
+		/*dummy*/
+		double dummyInitialCreditAmt = 200;
+		int serveAgentId = 1;				
+		payment.setPayForDevice(deviceId);			
+		payment.setTotalCreditAmt(dummyInitialCreditAmt);
+		
+		if(payListbyDev.size() == 0 )
+		{
+			//start use - first pay
+			payment.setCurrentCreditAmt(dummyInitialCreditAmt-payment.getPayAmt());
+			
+		}
+		else
+		{
+			//paid at least one time
+			double lastCredit =  payListbyDev.get(payListbyDev.size()-1).getCurrentCreditAmt();
+			payment.setCurrentCreditAmt(lastCredit - payment.getPayAmt());
+		}
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		payment.setPayDay(timestamp);
+		payment.setPayAgent(serveAgentId);	
+		payService.savePayment(payment);
+		
+		return "success" ;		
+	}
+	
+	/*Method*/
 	private boolean uploadPhoto(MultipartFile nricFile,MultipartFile faceFile,MultipartFile houseFile, HttpServletRequest request)
 			throws IOException  {	
 		
@@ -129,6 +180,8 @@ public class AgentConroller {
 		{
 			uploading=false;
 		}
+		
+		
 		return uploading;
 	}
 }
