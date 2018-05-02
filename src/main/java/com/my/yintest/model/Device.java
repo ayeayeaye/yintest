@@ -65,10 +65,6 @@ public class Device {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
-
 	public Device(int deviceId, String usageCommand, Timestamp visitTime, Date systemTime, String gPSLat, String gPSLong,
 			String devStatus, String chargeStatus, String dCStatus, String uSBStatus, String batteryStatus,
 			int devByCust, Customer deviceCustModel, List<Payment> devPaymentList) {

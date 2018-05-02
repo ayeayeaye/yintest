@@ -61,6 +61,7 @@ function initialize() {
              '<p>Customer Address:<b><c:out value="${custPro.address.roadName}" /></b></p>'+
              
             '</div>'+
+            
             '<hr>'+
             '<div id = "container1" style = " float:left; width: 300px; height: 300px; border:solid 1px;">' +
             '</div>'+
@@ -68,7 +69,8 @@ function initialize() {
             '</div>'] ,
            
             
-            </c:forEach>];
+            </c:forEach>
+            ];
         
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -197,8 +199,7 @@ function initialize() {
                      json2.series = series2;
                      json2.plotOptions = plotOptions2;
                      
-                     $('#container2').highcharts(json2); 
-                     
+                     $('#container2').highcharts(json2);                    
                      //2-End
             }
         })
