@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.my.yintest.javabean.DeviceStatus;
+
 @Entity
 @Table(name="device_list")
 public class Device {
@@ -136,6 +138,22 @@ public class Device {
 	}
 
 	public String getDevStatus() {
+/*		if(devStatus.equals("1"))
+		{
+			devStatus = "On";
+		}
+		else if(devStatus.equals("2"))
+		{
+			devStatus = "Off";
+		}
+		else if(devStatus.equals("3"))
+		{
+			devStatus = "Tamper";
+		}
+		else if(devStatus.equals("4"))
+		{
+			devStatus = "FullyPaid";
+		}*/
 		return devStatus;
 	}
 

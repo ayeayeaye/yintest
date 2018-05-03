@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import com.my.yintest.model.Address;
@@ -22,12 +24,12 @@ public class DeviceStatusProfile {
     private List<String> powerDayList;
     private List<String> batteryDayList;
     
+    
 
 	public DeviceStatusProfile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public DeviceStatusProfile(Device device, List<String> chargingDayList, List<String> dcDayList,
 			List<String> usbDayList, List<String> powerDayList, List<String> batteryDayList) {
@@ -40,13 +42,12 @@ public class DeviceStatusProfile {
 		this.batteryDayList = batteryDayList;
 	}
 
-
-	public Device getDevice() {
+	public Device getdevice() {
 		return device;
 	}
 
 
-	public void setDevice(Device device) {
+	public void setdevice(Device device) {
 		this.device = device;
 	}
 
@@ -100,6 +101,14 @@ public class DeviceStatusProfile {
 		this.batteryDayList = batteryDayList;
 	}
 
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
 
 	@Override
 	public String toString() {
@@ -108,4 +117,5 @@ public class DeviceStatusProfile {
 				+ batteryDayList + "]";
 	}
 
+	
 }

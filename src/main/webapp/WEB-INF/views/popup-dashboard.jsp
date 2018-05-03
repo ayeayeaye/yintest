@@ -10,12 +10,11 @@
 }
 
 </style>
- 
+
 
 <div id="map_wrapper_dashboard">
     <div id="map_canvas_dashboard" class="mapping"></div>
 </div>
-
 
 
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
@@ -34,7 +33,7 @@ function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-    		zoom: 3,
+    	zoom: 3,
     	mapTypeId: google.maps.MapTypeId.ROADMAP
     };
                     
@@ -42,15 +41,16 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas_dashboard"), mapOptions);
     map.setTilt(45);
  
-    var markers = [
-			            <c:forEach var="cust" items="${custList}" varStatus="status">
+       var markers = [
+			            <c:forEach var="devStaPro" items="${devStaProList}" varStatus="status">
 			                [
-			                '<c:out value="${cust.custName}" />',
-			                <c:out value="${cust.cusAddress.lat}" />,
-			                <c:out value="${cust.cusAddress.longt}" />,
+			                '<c:out value="${devStaPro.device.deviceCustModel.custName}" />',
+			                <c:out value="${devStaPro.device.deviceCustModel.cusAddress.lat}" />,
+			                <c:out value="${devStaPro.device.deviceCustModel.cusAddress.longt}" />,
+			                '<c:out value="${devStaPro.device.devStatus}" />',
 			                ],
 			            </c:forEach>
-                     ];  
+                  ];                    
         
 //Data for Highcharts
    var chargingDayList = [
@@ -112,16 +112,16 @@ function initialize() {
     ];
     // Info Window Content 
           var infoWindowContent = [
-        	<c:forEach var="cust" items="${custList}" varStatus="status">      	
+        	<c:forEach var="devStaPro" items="${devStaProList}" varStatus="status">      	
             [           
-           		'<img style="float:left; width:150px; height: 120px; border: solid 1px;" src="<%= request.getContextPath()%>/photo/${cust.custPhoto.facePhoto}">'+
+           		'<img style="float:left; width:150px; height: 120px; border: solid 1px;" src="<%= request.getContextPath()%>/photo/${devStaPro.device.deviceCustModel.custPhoto.facePhoto}">'+
 	           		'<div style="width:440px; margin-left:160px;" >'+ 
 	           			'<table class="table table-bordered table-striped">'+	 
 	           				'<tr>'+	
 	           					'<td>'+
-			           				 '<p>Device ID :<b><c:out value="${cust.custDevice.deviceId}" /></b></p>'+
-						             '<p>Customer ID :<b><c:out value="${cust.custId}" /></b></p>'+
-						             '<p>Name :<b><c:out value="${cust.custName}" /></b></p>'+
+			           				 '<p>Device ID :<b><c:out value="${devStaPro.device.deviceId}" /></b></p>'+
+						             '<p>Customer ID :<b><c:out value="${devStaPro.device.deviceCustModel.custId}" /></b></p>'+
+						             '<p>Name :<b><c:out value="${devStaPro.device.deviceCustModel.custName}" /></b></p>'+
 					             '</td>'+						             
 				             '</tr>'+			             
 			             '</table>' +
@@ -137,52 +137,85 @@ function initialize() {
 
            				'<tr>'+	
 	           				'<td>'+
-		           				 '<p>NRIC :<b><c:out value="${cust.nric}" /></b></p>'+
-					             '<p>Email :<b><c:out value="${cust.email}" /></b></p>'+
-					             '<p>Mobile :<b><c:out value="${cust.mobile}" /></b></p>'+
+		           				 '<p>NRIC :<b><c:out value="${devStaPro.device.deviceCustModel.nric}" /></b></p>'+
+					             '<p>Email :<b><c:out value="${devStaPro.device.deviceCustModel.email}" /></b></p>'+
+					             '<p>Mobile :<b><c:out value="${devStaPro.device.deviceCustModel.mobile}" /></b></p>'+
 				             '</td>'+
 		           			'<td>'+
-		           				 '<p>Address :<b><c:out value="${cust.cusAddress.roadName}" /></b></p>'+
-					              '<p>GPS Latitude :<b> <c:out value="${cust.cusAddress.lat}" /> </b><p>'+
+		           				 '<p>Address :<b><c:out value="${devStaPro.device.deviceCustModel.cusAddress.roadName}" /></b></p>'+
+					              '<p>GPS Latitude :<b> <c:out value="${devStaPro.device.deviceCustModel.cusAddress.lat}" /> </b><p>'+
 					              '<p>GPS Longitude : <b>'+
-					              <c:out value="${cust.cusAddress.longt}" />+
+					              <c:out value="${devStaPro.device.deviceCustModel.cusAddress.longt}" />+
 					              '</b></p>'+
 				             '</td>'+						             
 			             '</tr>'+	
 	           			 '<tr>'+	
 		           			'<td>'+
-		           				 '<p>Job :<b><c:out value="${cust.job}" /></b></p>'+
-					             '<p>Income :<b><c:out value="${cust.income}" /></b></p>'+
-					             '<p>Education :<b><c:out value="${cust.education}" /></b></p>'+
+		           				 '<p>Job :<b><c:out value="${devStaPro.device.deviceCustModel.job}" /></b></p>'+
+					             '<p>Income :<b><c:out value="${devStaPro.device.deviceCustModel.income}" /></b></p>'+
+					             '<p>Education :<b><c:out value="${devStaPro.device.deviceCustModel.education}" /></b></p>'+
 				             '</td>'+	
 			           		'<td>'+
-		           				 '<p>Adult Number :<b><c:out value="${cust.noAdult}" /></b></p>'+
-					             '<p>Child Number :<b><c:out value="${cust.noChild}" /></b></p>'+
-					             '<p>House Type :<b><c:out value="${cust.houseType}" /></b></p>'+
-				             '</td>'+						             
+		           				 '<p>Adult Number :<b><c:out value="${devStaPro.device.deviceCustModel.noAdult}" /></b></p>'+
+					             '<p>Child Number :<b><c:out value="${devStaPro.device.deviceCustModel.noChild}" /></b></p>'+
+					             '<p>House Type :<b><c:out value="${devStaPro.device.deviceCustModel.houseType}" /></b></p>'+
+				             '</td>'+					             
 			             '</tr>'+				             
 		             '</table>' +
                 '</div>'+
                 /* UserProfile - End */
+                
+                /* Device Information - Start */
 	           		'<div style="width:600px;" >'+ 
            			'<table class="table table-bordered table-striped">'+	 
            				'<tr style="background-color:#99bffc;">'+
-           					'<td colspan="5">'+
+           					'<td>'+
            						'Device Information' +
 		            		 '</td>'+						             
 		             	'</tr>'+
 
            				'<tr>'+	
-           					'<td>'+
-					             '<p>Status :<b><c:out value="${cust.custId}" /></b></p>'+
-					             '<p>GPS Latitude :<b><c:out value="${cust.custDevice.GPSLat}" /></b></p>'+
-					             '<p>GPS Longitude :<b><c:out value="${cust.custDevice.GPSLong}" /></b></p>'+					             
+           					'<td>'+   
+           						 '<p>Status :<b><c:out value="${devStaPro.device.devStatus}" /></b></p>'+ 
+					             '<p>GPS Latitude :<b><c:out value="${devStaPro.device.GPSLat}" /></b></p>'+
+					             '<p>GPS Longitude :<b><c:out value="${devStaPro.device.GPSLong}" /></b></p>'+					             
 				             '</td>'+						             
 			             '</tr>'+			             
 		             '</table>' +
                 '</div>'+
-		             '<hr>'+
-
+                /* Device Information - End */
+                
+                /* Payment History - Start */
+	           		'<div style="width:600px;">'+
+	           		'<table class="table table-bordered">'+	 
+           				'<tr style="background-color:#99bffc;">'+
+           					'<td colspan="7">'+
+           						'Payment History' +
+		            		 '</td>'+						             
+		             	'</tr>'+
+           				'<tr>'+
+           					'<td>#</td>'+	
+	       					'<td>Id</td>'+	
+	       					'<td>Paid</td>'+
+	       					'<td>Date</td>'+
+	       					'<td>Credit</td>'+
+	       					'<td>Agent</td>'+
+	       					'<td>Comment</td>'+
+	             		'</tr>'+					
+		                <c:forEach var="pay" items="${devStaPro.device.devPaymentList}" varStatus="counter" >	                 		
+           				'<tr>'+	
+           					'<td><c:out value="${counter.count}" /></td>'+
+           					'<td><c:out value="${pay.payId}" /></td>'+
+	       					'<td><c:out value="${pay.payAmt}" /></td>'+
+	       					'<td><c:out value="${pay.payDay}" /></td>'+
+	       					'<td><c:out value="${pay.currentCreditAmt}" /></td>'+		
+	       					'<td><c:out value="${pay.payAgent}" /></td>'+
+	       					'<td><c:out value="${pay.payComment}" /></td>'+					             
+		             	'</tr>'+
+		             	</c:forEach>		             
+		             '</table>' +
+                '</div>'+                               
+                /* Payment History - End */
 	        	'<table class="table table-bordered">'+	        		
 	        		'<tr>'+
 	        			'<td>'+
@@ -232,7 +265,23 @@ function initialize() {
             map: map,
             title: markers[i][0]
         }); 
-        
+        var devst = markers[i][3];
+        if(devst == 'ON')
+    	{
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    	}
+        else if(devst == 'OFF')
+        {
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        } 
+        else if(devst == 'TAMPER')
+        {
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+        }
+        else if(devst == 'FULLYPAID')
+        {
+        	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+        }
          // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
