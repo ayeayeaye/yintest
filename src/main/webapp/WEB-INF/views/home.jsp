@@ -20,7 +20,7 @@
  	<hr>
  	<%-- <a href="${pageContext.request.contextPath}/test/device/locate/all">Locate all devices(Test)</a><br/>  --%>	
  	<%-- <a href="${pageContext.request.contextPath}/test/device/add">Add devices (Test)</a><br/> --%>
- 	<a href="${pageContext.request.contextPath}/test/device/show/chart">Show chart (Example)</a><br/>
+ <%-- 	<a href="${pageContext.request.contextPath}/test/device/show/chart">Show chart (Example)</a><br/> --%>
  	<%-- <a href="${pageContext.request.contextPath}/hello">test</a><br/> --%>
  	
 

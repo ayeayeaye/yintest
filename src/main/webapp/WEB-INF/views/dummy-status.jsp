@@ -19,9 +19,9 @@
 	${usb} , 
 </c:forEach>
 <br>
-<p>powerConsumption(V) -->((outputDCStatus*12)/1000) -Convert mA to V</p>
-<c:forEach var="power" items="${powerConsumption}" varStatus="counter">	
-	${power} , 
+<p>batteryConsumption(V) -->Random</p>
+<c:forEach var="batery" items="${batteryConsumption}" varStatus="counter">	
+	${batery} , 
 </c:forEach>
 
 <hr>

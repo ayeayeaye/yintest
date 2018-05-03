@@ -1,16 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<style>
-#map_wrapper_dashboard {
-    height: 100%;
-}
-
-#map_canvas_dashboard {
-    height: 100%;
-}
-
-</style>
-
+<link href="${pageContext.request.contextPath}/css/style.css" rel="STYLESHEET" type="text/css"/>
 
 <div id="map_wrapper_dashboard">
     <div id="map_canvas_dashboard" class="mapping"></div>
@@ -115,7 +104,7 @@ function initialize() {
         	<c:forEach var="devStaPro" items="${devStaProList}" varStatus="status">      	
             [           
            		'<img style="float:left; width:150px; height: 120px; border: solid 1px;" src="<%= request.getContextPath()%>/photo/${devStaPro.device.deviceCustModel.custPhoto.facePhoto}">'+
-	           		'<div style="width:440px; margin-left:160px;" >'+ 
+	           		'<div style="width:475px; margin-left:160px;" >'+ 
 	           			'<table class="table table-bordered table-striped">'+	 
 	           				'<tr>'+	
 	           					'<td>'+
@@ -127,7 +116,7 @@ function initialize() {
 			             '</table>' +
 	                '</div>'+
 	                /* UserProfile - Start */
-	           		'<div style="width:600px;" >'+ 
+	           		'<div style="width:635px;" >'+ 
            			'<table class="table table-bordered table-striped">'+	 
            				'<tr style="background-color:#99bffc;">'+
            					'<td colspan="2">'+
@@ -166,7 +155,7 @@ function initialize() {
                 /* UserProfile - End */
                 
                 /* Device Information - Start */
-	           		'<div style="width:600px;" >'+ 
+	           		'<div style="width:635px;" >'+ 
            			'<table class="table table-bordered table-striped">'+	 
            				'<tr style="background-color:#99bffc;">'+
            					'<td>'+
@@ -186,7 +175,7 @@ function initialize() {
                 /* Device Information - End */
                 
                 /* Payment History - Start */
-	           		'<div style="width:600px;">'+
+	           		'<div style="width:635px;">'+
 	           		'<table class="table table-bordered">'+	 
            				'<tr style="background-color:#99bffc;">'+
            					'<td colspan="7">'+
@@ -219,32 +208,45 @@ function initialize() {
 	        	'<table class="table table-bordered">'+	        		
 	        		'<tr>'+
 	        			'<td>'+
-	        				'<div id = "chargingContainer" style = "float:left; width: 350px; height: 300px; border:solid 1px;"></div>'+
-	        			'</td>'+
+	        				'<div id = "chargingContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>'+
+    						'<p><input type="radio" name="charging" id="chargingDay" value="chargingDay" checked>Day</p>'+
+    						'<p><input type="radio" name="charging" id="chargingWeek" value="chargingDay">Week</p>'+
+    						'<p><input type="radio" name="charging" id="chargingMonth" value="chargingMonth">Month</p>'+
+	        			'</td>'+	        			
 	        		'</tr>'+
 	        		'<tr>'+
 	        			'<td>'+
-	        				'<div id = "dcContainer" style = "float:left; width: 350px; height: 300px; border:solid 1px;"></div>'+
+	        				'<div id = "dcContainer" style = "float:left; width: 550px;  height: 300px; border:solid 1px;"></div>'+
+    						'<p><input type="radio" name="dc" id="dcDay" value="dcDay" checked>Day</p>'+
+    						'<p><input type="radio" name="dc" id="dcWeek" value="dcWeek">Week</p>'+
+    						'<p><input type="radio" name="dc" id="dcMonth" value="dcMonth">Month</p>'+	        				
 	        			'</td>'+
         			'</tr>'+	        		
 	        		'<tr>'+
 	        			'<td>'+
-	        				'<div id = "usbContainer" style = "float:left; width: 350px; height: 300px; border:solid 1px;"></div>' +
+	        				'<div id = "usbContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
+    						'<p><input type="radio" name="usb" id="usbDay" value="usbDay" checked>Day</p>'+
+    						'<p><input type="radio" name="usb" id="usbWeek" value="usbWeek">Week</p>'+
+    						'<p><input type="radio" name="usb" id="usbMonth" value="usbMonth">Month</p>'+	      	        				
 	        			'</td>'+
 	        		'</tr>'+
 	        		'<tr>'+
 	        			'<td>'+
-	        				'<div id = "powerContainer" style = " float:left; width: 350px; height: 300px; border:solid 1px;"></div>' +
+	        				'<div id = "powerContainer" style = " float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
+    						'<p><input type="radio" name="power" id="powerDay" value="powerDay" checked>Day</p>'+
+    						'<p><input type="radio" name="power" id="powerWeek" value="powerWeek">Week</p>'+
+    						'<p><input type="radio" name="power" id="powerMonth" value="powerMonth">Month</p>'+	   	        				
 	        			'</td>'+
         			'</tr>'+	        		
 	        		'<tr>'+
 	        			'<td>'+
-	        				'<div id = "batteryContainer" style = "float:left; width: 350px; height: 300px; border:solid 1px;"></div>' +
+	        				'<div id = "batteryContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
+    						'<p><input type="radio" name="battery" id="batteryDay" value="batteryDay" checked>Day</p>'+
+    						'<p><input type="radio" name="battery" id="batteryWeek" value="batteryWeek">Week</p>'+
+    						'<p><input type="radio" name="battery" id="batteryMonth" value="batteryMonth">Month</p>'+	   	        				
 	        			'</td>'+
 	        		'</tr>'+
 	        	'</table>'  
-	        
-
             ] ,    
             
             </c:forEach>
@@ -282,6 +284,7 @@ function initialize() {
         {
         	marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
         }
+        
          // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
@@ -289,197 +292,69 @@ function initialize() {
                 infoWindow.open(map, marker);
                 
                 //Highcharts
-                var title1 = {
-                        text: 'Charging Status'   
-                     };
-                     var xAxis1 = {
-                        categories: ['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11']
- /*                        	,'12', '13', '14', '15','16', '17', '18', '19', '20', '21', '22', '23', '24'] */
-                     };
-                     var yAxis1 = {
-                        title: {
-                           text: 'mA1'
-                        }
-                     };                     
-
-                     var plotOptions1 = {
-                        line: {
-                           dataLabels: {
-                              enabled: false
-                           },  
-                           color:'#f45042',                        	  
-                           enableMouseTracking: true
-                        }
-                     };
-                     var series1 = [{
-                           name: '@@@',
-                           data: [chargingDayList[i][0], chargingDayList[i][1], chargingDayList[i][2], chargingDayList[i][3], chargingDayList[i][4], chargingDayList[i][5], 
-                        	      chargingDayList[i][6], chargingDayList[i][7], chargingDayList[i][8], chargingDayList[i][9], chargingDayList[i][10], chargingDayList[i][11]]
-                        }
-                     ];
-                
-                     var json1 = {};
-                     json1.title = title1;
-                     json1.xAxis = xAxis1;
-                     json1.yAxis = yAxis1;  
-                     json1.series = series1;
-                     json1.plotOptions = plotOptions1;
-                     
-                     $('#chargingContainer').highcharts(json1); 
-                     
+                	//Container 1-Start
+                   <%@include file="../../js/chargingDayHC.jsp"%> 				
+					$('#chargingDay').click(function() {
+						<%@include file="../../js/chargingDayHC.jsp"%> 
+					});				         
+				    $('#chargingWeek').click(function() {
+						<%@include file="../../js/chargingWeekHC.jsp"%> 
+					}); 
+				    $('#chargingMonth').click(function() {
+						<%@include file="../../js/chargingMonthHC.jsp"%> 
+					}); 				    
+				    //Container 1-End     	
+                                        
                      //Container 2-Start
-                 var title2 = {
-                        text: 'DC Usage'   
-                     };
-                     var xAxis2 = {
-                        categories: ['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11']
-                     };
-                     var yAxis2 = {
-                        title: {
-                           text: 'mA'
-                        }
-                     };
-
-                     var plotOptions2 = {
-                        line: {
-                           dataLabels: {
-                              enabled: false
-                           },   
-                           enableMouseTracking: true
-                        }
-                     };
-                     var series2 = [{
-                           name: 'Example device',
-                           data: [ dcDayList[i][0], dcDayList[i][1], dcDayList[i][2], dcDayList[i][3], dcDayList[i][4], dcDayList[i][5],
-                        	       dcDayList[i][6], dcDayList[i][7], dcDayList[i][8], dcDayList[i][9], dcDayList[i][10], dcDayList[i][11] ]
-                        }
-                     ];
-                
-                     var json2 = {};
-                     json2.title = title2;
-                     json2.xAxis = xAxis2;
-                     json2.yAxis = yAxis2;  
-                     json2.series = series2;
-                     json2.plotOptions = plotOptions2;
-                     
-                     $('#dcContainer').highcharts(json2);                    
+    				<%@include file="../../js/dcDayHC.jsp"%>
+					$('#dcDay').click(function() {
+						<%@include file="../../js/dcDayHC.jsp"%> 
+					});				         
+				    $('#dcWeek').click(function() {
+						<%@include file="../../js/dcWeekHC.jsp"%> 
+					}); 
+				    $('#dcMonth').click(function() {
+						<%@include file="../../js/dcMonthHC.jsp"%> 
+					})				    
                      //Container 2-End  
-    
-                     //Container 3-Start
-                	 var title3 = {
-                        text: 'USB Usage'   
-                     };
-                     var xAxis3 = {
-                        categories:['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11']
-                     };
-                     var yAxis3 = {
-                        title: {
-                           text: 'mA'
-                        }
-                     };
 
-                     var plotOptions3 = {
-                             line: {
-                                dataLabels: {
-                                   enabled: false
-                                },  
-                                color:'#41f489',                        	  
-                                enableMouseTracking: true
-                             }
-                          }
-                     var series3 = [{
-                           name: 'Example device',
-                           data: [ usbDayList[i][0], usbDayList[i][1], usbDayList[i][2], usbDayList[i][3], usbDayList[i][4], usbDayList[i][5],
-                        	       usbDayList[i][6], usbDayList[i][7], usbDayList[i][8], usbDayList[i][9], usbDayList[i][10], usbDayList[i][11] ]
-                        }
-                     ];
-                
-                     var json3 = {};
-                     json3.title = title3;
-                     json3.xAxis = xAxis3;
-                     json3.yAxis = yAxis3;  
-                     json3.series = series3;
-                     json3.plotOptions = plotOptions3;
-                     
-                     $('#usbContainer').highcharts(json3);                    
-                     //Container 3-End   
+                    //Container 3-Start                  
+    				<%@include file="../../js/usbDayHC.jsp"%>   
+					$('#usbDay').click(function() {
+						<%@include file="../../js/usbDayHC.jsp"%> 
+					});				         
+				    $('#usbWeek').click(function() {
+						<%@include file="../../js/usbWeekHC.jsp"%> 
+					}); 
+				    $('#usbMonth').click(function() {
+						<%@include file="../../js/usbMonthHC.jsp"%> 
+					})				    
+    				//Container 3-End   
                      
                      //Container 4-Start
-                	 var title4 = {
-                        text: 'Power Consumption'   
-                     };
-                     var xAxis4 = {
-                        categories: ['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11']
-                     };
-                     var yAxis4 = {
-                        title: {
-                           text: 'mA'
-                        }
-                     };
-
-                     var plotOptions4 = {
-                             line: {
-                                dataLabels: {
-                                   enabled: false
-                                },  
-                                color:'#f4f442',                        	  
-                                enableMouseTracking: true
-                             }
-                          }
-                     var series4 = [{
-                           name: 'Example device',
-                           data: [ powerDayList[i][0], powerDayList[i][1], powerDayList[i][2], powerDayList[i][3], powerDayList[i][4], powerDayList[i][5],
-                        	       powerDayList[i][6], powerDayList[i][7], powerDayList[i][8], powerDayList[i][9], powerDayList[i][10], powerDayList[i][11] ]
-                        }
-                     ];
-                
-                     var json4 = {};
-                     json4.title = title4;
-                     json4.xAxis = xAxis4;
-                     json4.yAxis = yAxis4;  
-                     json4.series = series4;
-                     json4.plotOptions = plotOptions4;
-                     
-                     $('#powerContainer').highcharts(json4);                    
+                    <%@include file="../../js/powerDayHC.jsp"%> 
+					$('#powerDay').click(function() {
+						<%@include file="../../js/powerDayHC.jsp"%> 
+					});				         
+				    $('#powerWeek').click(function() {;
+						<%@include file="../../js/powerWeekHC.jsp"%> 
+					}); 
+				    $('#powerMonth').click(function() {
+						<%@include file="../../js/powerMonthHC.jsp"%> 
+					})				    
                      //Container 4-End    
                      
                     //Container 5-Start
-                	 var title5 = {
-                        text: 'Battery Usage'   
-                     };
-                     var xAxis5 = {
-                        categories:['0', '1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11']
-                     };
-                     var yAxis5 = {
-                        title: {
-                           text: 'mA'
-                        }
-                     };
-
-                     var plotOptions5 = {
-                             line: {
-                                dataLabels: {
-                                   enabled: false
-                                },  
-                                color:'#686b6b',                        	  
-                                enableMouseTracking: true
-                             }
-                          }
-                     var series5 = [{
-                           name: 'Example device', 
-                           data: [ batteryDayList[i][0], batteryDayList[i][1], batteryDayList[i][2], batteryDayList[i][3], batteryDayList[i][4], batteryDayList[i][5],
-                        	       batteryDayList[i][6], batteryDayList[i][7], batteryDayList[i][8], batteryDayList[i][9], batteryDayList[i][10], batteryDayList[i][11] ]
-                        }
-                     ];
-                
-                     var json5 = {};
-                     json5.title = title5;
-                     json5.xAxis = xAxis5;
-                     json5.yAxis = yAxis5;  
-                     json5.series = series5;
-                     json5.plotOptions = plotOptions5;
-                     
-                     $('#batteryContainer').highcharts(json5);                    
+                   <%@include file="../../js/batteryDayHC.jsp"%>
+					$('#batteryDay').click(function() {
+						<%@include file="../../js/batteryDayHC.jsp"%> 
+					});				         
+				    $('#batteryWeek').click(function() {
+						<%@include file="../../js/batteryWeekHC.jsp"%> 
+					}); 
+				    $('#batteryMonth').click(function() {
+						<%@include file="../../js/batteryMonthHC.jsp"%> 
+					})					    
                      //Container 5-End                        
             }
         })(marker, i)); 
@@ -496,6 +371,5 @@ function initialize() {
         google.maps.event.removeListener(boundsListener);
     });
     
-    setTimeout(function(){google.maps.event.removeListener(zoomChangeBoundsListener)}, 2000);
 }
 </script>

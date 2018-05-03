@@ -40,12 +40,12 @@ public class DashboardController {
 		/*Calculate power usage status*/
 		List<String> powerStaList = new ArrayList<String>();		
 		ArrayList<DeviceStatusProfile> devStaProList = new ArrayList<DeviceStatusProfile>();
-		for (int i = 0; i < devList.size(); i++) {
-			
+		for (int i = 0; i < devList.size(); i++) {			
 			String[] dcStringAry =devList.get(i).getDCStatus().split(",");
 			for (String each: dcStringAry) {
 				double d = Double.parseDouble(each);
-				String s = Double.toString(d);
+				double d1 = d*12;
+				String s = Double.toString(d1);
 				powerStaList.add(s);
 			}
 			

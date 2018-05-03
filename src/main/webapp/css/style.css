@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+/* popup-dashboard */
+#map_wrapper_dashboard {
+    height: 100%;
+}
+
+#map_canvas_dashboard {
+    height: 100%;
+}
+
+

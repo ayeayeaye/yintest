@@ -32,6 +32,18 @@ public class DeviceController {
 		
 		model.addAttribute("device", new Device());
 		model.addAttribute("custList", custService.getAllCust());
+		
+		double[] inputAry1 = new double[24];
+		double rangeMin1 = 0.0;
+		double rangeMax1 = 3.999;
+		Random r = new Random();
+		
+		for (int i = 0; i < inputAry1.length; i++) {
+			double randomValue = rangeMin1 + (rangeMax1 - rangeMin1) * r.nextDouble(); 
+			inputAry1[i] = (double)Math.round(randomValue * 1000d) / 1000 ;		
+		}		
+		model.addAttribute("inputChargingStatus", inputAry1);
+		
 		return "dummy-status";
 	}
 	
@@ -41,7 +53,7 @@ public class DeviceController {
 		/*1 V = 1000 mA*/
 		
 		//Charging Status - Input range: 0 ~ 3.999
-		double[] inputAry1 = new double[12];
+		double[] inputAry1 = new double[24];
 		double rangeMin1 = 0.0;
 		double rangeMax1 = 3.999;
 		Random r = new Random();
@@ -53,7 +65,7 @@ public class DeviceController {
 		model.addAttribute("inputChargingStatus", inputAry1);
 
 		//DC Status - Output range: 0 ~ 3.999
-		double[] inputAry2 = new double[12];
+		double[] inputAry2 = new double[24];
 		for (int i = 0; i < inputAry2.length; i++) {
 			double randomValue = rangeMin1 + (rangeMax1 - rangeMin1) * r.nextDouble(); 
 			inputAry2[i] = (double)Math.round(randomValue * 1000d) / 1000 ;		
@@ -62,7 +74,7 @@ public class DeviceController {
 		
 		
 		//UsbPut Status - Usbput range: 0 ~ 1.000
-		double[] inputAry3 = new double[12];
+		double[] inputAry3 = new double[24];
 		for (int i = 0; i < inputAry3.length; i++) {
 			double randomValue = Math.random()* 1.000;
 			inputAry3[i] = (double)Math.round(randomValue * 1000d) / 1000 ;		
@@ -70,13 +82,13 @@ public class DeviceController {
 		model.addAttribute("usbStatus", inputAry3);
 		
 		
-		//Power Consumption
-		double[] inputAry4 = new double[12];
+		//Battery
+		double[] inputAry4 = new double[24];
 		for (int i = 0; i < inputAry4.length; i++) {
-			double value =  (inputAry2[i] * 12)/1000 ;
-			inputAry4[i] = (double)Math.round(value * 1000d) / 1000 ;
+			double randomValue = Math.random()* 1.000;
+			inputAry4[i] = (double)Math.round(randomValue * 1000d) / 1000 ;
 		}	
-		model.addAttribute("powerConsumption", inputAry4);
+		model.addAttribute("batteryConsumption", inputAry4);
 		
 		/*Save Device*/
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -108,6 +120,7 @@ public class DeviceController {
 			batteryS = batteryS + d +",";
 		}
 		newDevice.setBatteryStatus(batteryS);
+		
 		devService.saveDevice(newDevice);
 		
 		return "success";
