@@ -1,9 +1,9 @@
                 	 var title4 = {
-                        text: 'Power Consumption'   
+                        text: 'Power Consumption for One Month'   
                      };
                      var xAxis4 = {
-						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        title : {text:'Month'}
+						categories: ['1', '2', '3', '4'],
+                        title : {text:'Week'}
                      };
                      var yAxis4 = {
                         title: {
@@ -22,8 +22,7 @@
                           }
                      var series4 = [{
                            name: 'Power Status Per Month',
-                           data: [ powerDayList[i][0], powerDayList[i][1], powerDayList[i][2], powerDayList[i][3], powerDayList[i][4], powerDayList[i][5],
-                        	       powerDayList[i][6], powerDayList[i][7], powerDayList[i][8], powerDayList[i][9], powerDayList[i][10], powerDayList[i][11]]
+                           data: [ powerDayList[i][0], powerDayList[i][1], powerDayList[i][2], powerDayList[i][3]]
                         }
                      ];
                 

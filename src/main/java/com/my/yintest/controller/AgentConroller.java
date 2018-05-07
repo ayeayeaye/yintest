@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.yintest.javabean.CustomerProfile;
+import com.my.yintest.javabean.DeviceStatus;
 import com.my.yintest.model.Address;
 import com.my.yintest.model.Customer;
 import com.my.yintest.model.Device;
@@ -109,21 +110,45 @@ public class AgentConroller {
 
 				modelView = "success";
 				model.addAttribute("userName", customer.getCustName());
-			}
-		
-        }
-                
+			}		
+        }               
 		return modelView;				
 	}
 	
 	@RequestMapping("/view/all/customer")
 	public String viewAllCustomer(Model model) {
-		model.addAttribute("addList", addService.getAllAddress());
+
+		/*Convert device Number status  to String status*/
+		ArrayList<Customer> custList = cusService.getAllCust();
+		for (int i = 0; i < custList.size(); i++) 
+		{	
+			int i1 =Integer.parseInt(custList.get(i).getCustDevice().getDevStatus());
+			for (DeviceStatus each : DeviceStatus.values()) {			
+				if( i1 == each.showStatusNo())
+				{
+					String s =each.toString();
+					custList.get(i).getCustDevice().setDevStatus(s);
+				}
+			}
+		}
+		model.addAttribute("custList",custList);
 		return "agent-view-all-customer" ;		
 	}
 	@RequestMapping(value="/customer/detail/{custId}")
 	public String viewAUserInfo(Model model, @PathVariable Integer custId,  HttpSession session){
-		model.addAttribute("cust", cusService.getCustomer(custId));		
+		Customer cust = cusService.getCustomer(custId);
+		/*Convert device Number status  to String status*/
+
+			int i1 =Integer.parseInt(cust.getCustDevice().getDevStatus());
+			for (DeviceStatus each : DeviceStatus.values()) {			
+				if( i1 == each.showStatusNo())
+				{
+					String s =each.toString();
+					cust.getCustDevice().setDevStatus(s);
+				}
+			}
+
+		model.addAttribute("cust", cust);		
 		model.addAttribute("newPayment", new Payment());
 		return "agent-customer-details";
 	}
@@ -132,13 +157,13 @@ public class AgentConroller {
 	public String customPaidForDevice(Model model,  @ModelAttribute ("newPayment") Payment payment,  @PathVariable Integer deviceId,  HttpSession session) {
 		//get Device for calculation
 		List<Payment> payListbyDev =payService.findPaymentbyDeviceId(deviceId);
-				
-		/*dummy*/
-		double dummyInitialCreditAmt = 200;
-		int serveAgentId = 1;				
+						
+		double dummyInitialCreditAmt = 200; /*dummy*/
+		int serveAgentId = 1;				/*dummy*/
 		payment.setPayForDevice(deviceId);			
 		payment.setTotalCreditAmt(dummyInitialCreditAmt);
 		
+		/*may be dummy*/
 		if(payListbyDev.size() == 0 )
 		{
 			//start use - first pay
@@ -179,9 +204,7 @@ public class AgentConroller {
 		}catch(NullPointerException e)
 		{
 			uploading=false;
-		}
-		
-		
+		}		
 		return uploading;
 	}
 }

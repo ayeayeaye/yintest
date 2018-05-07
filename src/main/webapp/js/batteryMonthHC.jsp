@@ -1,9 +1,9 @@
                 	 var title5 = {
-                        text: 'Battery Usage'   
+                        text: 'Battery Usage for One Month'   
                      };
                      var xAxis5 = {
-                         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        title : {text:'Month'}
+                         categories: ['1', '2', '3', '4'],
+                        title : {text:'Week'}
                      };
                      var yAxis5 = {
                         title: {
@@ -22,8 +22,7 @@
                           }
                      var series5 = [{
                            name: 'Battery Status Per Month', 
-                           data: [ batteryDayList[i][0], batteryDayList[i][1], batteryDayList[i][2], batteryDayList[i][3], batteryDayList[i][4], batteryDayList[i][5],
-                        	       batteryDayList[i][6], batteryDayList[i][7], batteryDayList[i][8], batteryDayList[i][9], batteryDayList[i][10], batteryDayList[i][11]]
+                           data: [ batteryDayList[i][0], batteryDayList[i][1], batteryDayList[i][2], batteryDayList[i][3]]
                         }
                      ];
                 

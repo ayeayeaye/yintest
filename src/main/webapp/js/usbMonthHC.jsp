@@ -1,9 +1,9 @@
                 	 var title3 = {
-                        text: 'USB Usage'   
+                        text: 'USB Usage for One Month' 
                      };
                      var xAxis3 = {
-                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        title : {text:'Month'}
+                        categories: ['1', '2', '3', '4'],
+                        title : {text:'Week'}
                      };
                      var yAxis3 = {
                         title: {
@@ -22,8 +22,7 @@
                           }
                      var series3 = [{
                            name: 'USB Status Per Month',
-                           data: [usbDayList[i][0], usbDayList[i][1], usbDayList[i][2], usbDayList[i][3], usbDayList[i][4], usbDayList[i][5],
-                        	       usbDayList[i][6], usbDayList[i][7], usbDayList[i][8], usbDayList[i][9], usbDayList[i][10], usbDayList[i][11] ]
+                           data: [usbDayList[i][0], usbDayList[i][1], usbDayList[i][2], usbDayList[i][3] ]
                         }
                      ];
                 

@@ -1,9 +1,9 @@
                  var title2 = {
-                        text: 'DC Usage'   
+                        text: 'DC Usage for One Week'   
                      };
                      var xAxis2 = {
-                        categories: ['1', '2', '3', '4'],
-                        title : {text:'Week'}
+                        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        title : {text:'Day'}
                      };
                      var yAxis2 = {
                         title: {
@@ -21,7 +21,8 @@
                      };
                      var series2 = [{
                            name: 'DC Status Per Week',
-                           data: [ dcDayList[i][0], dcDayList[i][1], dcDayList[i][2], dcDayList[i][3]]
+                           data: [ dcDayList[i][0], dcDayList[i][1], dcDayList[i][2], dcDayList[i][3],
+                            	  dcDayList[i][4], dcDayList[i][5],dcDayList[i][6]]
                         }
                      ];
                 

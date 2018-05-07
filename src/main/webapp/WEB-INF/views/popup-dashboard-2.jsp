@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <link href="${pageContext.request.contextPath}/css/style.css" rel="STYLESHEET" type="text/css"/>
 
 <div id="map_wrapper_dashboard">
@@ -104,7 +105,7 @@ function initialize() {
         	<c:forEach var="devStaPro" items="${devStaProList}" varStatus="status">      	
             [           
            		'<img style="float:left; width:150px; height: 120px; border: solid 1px;" src="<%= request.getContextPath()%>/photo/${devStaPro.device.deviceCustModel.custPhoto.facePhoto}">'+
-	           		'<div style="width:475px; margin-left:160px;" >'+ 
+	           		'<div style="width:675px; margin-left:160px;" >'+ 
 	           			'<table class="table table-bordered table-striped">'+	 
 	           				'<tr>'+	
 	           					'<td>'+
@@ -116,10 +117,10 @@ function initialize() {
 			             '</table>' +
 	                '</div>'+
 	                /* UserProfile - Start */
-	           		'<div style="width:635px;" >'+ 
+	           		'<div style="width:800px;" >'+ 
            			'<table class="table table-bordered table-striped">'+	 
            				'<tr style="background-color:#99bffc;">'+
-           					'<td colspan="2">'+
+           					'<td colspan="4">'+
            						'UserProfile' +
 		            		 '</td>'+						             
 		             	'</tr>'+
@@ -137,8 +138,7 @@ function initialize() {
 					              <c:out value="${devStaPro.device.deviceCustModel.cusAddress.longt}" />+
 					              '</b></p>'+
 				             '</td>'+						             
-			             '</tr>'+	
-	           			 '<tr>'+	
+	
 		           			'<td>'+
 		           				 '<p>Job :<b><c:out value="${devStaPro.device.deviceCustModel.job}" /></b></p>'+
 					             '<p>Income :<b><c:out value="${devStaPro.device.deviceCustModel.income}" /></b></p>'+
@@ -190,8 +190,8 @@ function initialize() {
 	       					'<td>Credit</td>'+
 	       					'<td>Agent</td>'+
 	       					'<td>Comment</td>'+
-	             		'</tr>'+					
-		                <c:forEach var="pay" items="${devStaPro.device.devPaymentList}" varStatus="counter" >	                 		
+	             		'</tr>'+
+	             		<c:forEach var="pay" items="${devStaPro.device.devPaymentList}" varStatus="counter">	             		
            				'<tr>'+	
            					'<td><c:out value="${counter.count}" /></td>'+
            					'<td><c:out value="${pay.payId}" /></td>'+
@@ -200,8 +200,9 @@ function initialize() {
 	       					'<td><c:out value="${pay.currentCreditAmt}" /></td>'+		
 	       					'<td><c:out value="${pay.payAgent}" /></td>'+
 	       					'<td><c:out value="${pay.payComment}" /></td>'+					             
-		             	'</tr>'+
-		             	</c:forEach>		             
+		             	'</tr>'+		             	
+		             	</c:forEach>
+
 		             '</table>' +
                 '</div>'+                               
                 /* Payment History - End */
@@ -209,41 +210,38 @@ function initialize() {
 	        		'<tr>'+
 	        			'<td>'+
 	        				'<div id = "chargingContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>'+
-    						'<p><input type="radio" name="charging" id="chargingDay" value="chargingDay" checked>Day</p>'+
-    						'<p><input type="radio" name="charging" id="chargingWeek" value="chargingDay">Week</p>'+
-    						'<p><input type="radio" name="charging" id="chargingMonth" value="chargingMonth">Month</p>'+
+    						'<p><input type="radio" name="charging" id="chargingDay" value="chargingDay" checked>Day'+
+    						'<input type="radio" name="charging" id="chargingWeek" value="chargingDay">Week'+
+    						'<input type="radio" name="charging" id="chargingMonth" value="chargingMonth">Month</p>'+
 	        			'</td>'+	        			
-	        		'</tr>'+
-	        		'<tr>'+
+
 	        			'<td>'+
 	        				'<div id = "dcContainer" style = "float:left; width: 550px;  height: 300px; border:solid 1px;"></div>'+
-    						'<p><input type="radio" name="dc" id="dcDay" value="dcDay" checked>Day</p>'+
-    						'<p><input type="radio" name="dc" id="dcWeek" value="dcWeek">Week</p>'+
-    						'<p><input type="radio" name="dc" id="dcMonth" value="dcMonth">Month</p>'+	        				
+    						'<p><input type="radio" name="dc" id="dcDay" value="dcDay" checked>Day'+
+    						'<input type="radio" name="dc" id="dcWeek" value="dcWeek">Week'+
+    						'<input type="radio" name="dc" id="dcMonth" value="dcMonth">Month</p>'+	        				
 	        			'</td>'+
-        			'</tr>'+	        		
-	        		'<tr>'+
+
 	        			'<td>'+
 	        				'<div id = "usbContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
-    						'<p><input type="radio" name="usb" id="usbDay" value="usbDay" checked>Day</p>'+
-    						'<p><input type="radio" name="usb" id="usbWeek" value="usbWeek">Week</p>'+
-    						'<p><input type="radio" name="usb" id="usbMonth" value="usbMonth">Month</p>'+	      	        				
+    						'<p><input type="radio" name="usb" id="usbDay" value="usbDay" checked>Day'+
+    						'<input type="radio" name="usb" id="usbWeek" value="usbWeek">Week'+
+    						'<input type="radio" name="usb" id="usbMonth" value="usbMonth">Month</p>'+	      	        				
 	        			'</td>'+
 	        		'</tr>'+
 	        		'<tr>'+
 	        			'<td>'+
 	        				'<div id = "powerContainer" style = " float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
-    						'<p><input type="radio" name="power" id="powerDay" value="powerDay" checked>Day</p>'+
-    						'<p><input type="radio" name="power" id="powerWeek" value="powerWeek">Week</p>'+
-    						'<p><input type="radio" name="power" id="powerMonth" value="powerMonth">Month</p>'+	   	        				
+    						'<p><input type="radio" name="power" id="powerDay" value="powerDay" checked>Day'+
+    						'<input type="radio" name="power" id="powerWeek" value="powerWeek">Week'+
+    						'<input type="radio" name="power" id="powerMonth" value="powerMonth">Month</p>'+	   	        				
 	        			'</td>'+
-        			'</tr>'+	        		
-	        		'<tr>'+
+
 	        			'<td>'+
 	        				'<div id = "batteryContainer" style = "float:left; width: 550px; height: 300px; border:solid 1px;"></div>' +
-    						'<p><input type="radio" name="battery" id="batteryDay" value="batteryDay" checked>Day</p>'+
-    						'<p><input type="radio" name="battery" id="batteryWeek" value="batteryWeek">Week</p>'+
-    						'<p><input type="radio" name="battery" id="batteryMonth" value="batteryMonth">Month</p>'+	   	        				
+    						'<p><input type="radio" name="battery" id="batteryDay" value="batteryDay" checked>Day'+
+    						'<input type="radio" name="battery" id="batteryWeek" value="batteryWeek">Week'+
+    						'<input type="radio" name="battery" id="batteryMonth" value="batteryMonth">Month</p>'+	   	        				
 	        			'</td>'+
 	        		'</tr>'+
 	        	'</table>'  

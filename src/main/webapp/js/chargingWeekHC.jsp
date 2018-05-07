@@ -1,10 +1,10 @@
              
                  var title11 = {
-                        text: 'Charging Status'   
+                        text: 'Charging Status for One Week'   
                      };
                      var xAxis11 = {
-                        categories: ['1', '2', '3', '4'],
- 						title : {text:'Week'}
+                        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+ 						title : {text:'Day'}
                      };
                      var yAxis11 = {
                         title: { text: 'mA'}
@@ -21,7 +21,8 @@
                      };
                      var series11 = [{
                            name: 'Charging Status Per Week',
-                           data: [chargingDayList[i][0], chargingDayList[i][1], chargingDayList[i][2], chargingDayList[i][3]]
+                           data: [chargingDayList[i][0], chargingDayList[i][1], chargingDayList[i][2], chargingDayList[i][3],
+                                  chargingDayList[i][4], chargingDayList[i][5], chargingDayList[i][6]]
                         }
                      ];
                 

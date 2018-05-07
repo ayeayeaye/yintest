@@ -1,9 +1,9 @@
                 	 var title3 = {
-                        text: 'USB Usage'   
+                        text: 'USB Usage for One Week'   
                      };
                      var xAxis3 = {
-                        categories: ['1', '2', '3', '4'],
-                        title : {text:'Week'}
+                        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        title : {text:'Day'}
                      };
                      var yAxis3 = {
                         title: {
@@ -22,7 +22,8 @@
                           }
                      var series3 = [{
                            name: 'USB Status Per Week',
-                           data: [ usbDayList[i][0], usbDayList[i][1], usbDayList[i][2], usbDayList[i][3] ]
+                           data: [ usbDayList[i][0], usbDayList[i][1], usbDayList[i][2], usbDayList[i][3],
+                                   usbDayList[i][4], usbDayList[i][5], usbDayList[i][6] ]
                         }
                      ];
                 
