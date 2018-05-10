@@ -13,7 +13,6 @@
  	<a href="${pageContext.request.contextPath}/agent/view/all/customer">Agent View All Customer</a><br/>
  	<a href="${pageContext.request.contextPath}/dashboard/view1">Dashboard 1</a><br/>
  	<a href="${pageContext.request.contextPath}/dashboard/view2">Dashboard 2</a><br/>
- 	<a href="${pageContext.request.contextPath}/dashboard/view3">Dashboard 3</a><br/>
  	<a href="${pageContext.request.contextPath}/dashboard/view4">Dashboard 4</a><br/>
  	<hr>
  	<a href="${pageContext.request.contextPath}/admin/view/all/agent">View All Agent</a><br/>

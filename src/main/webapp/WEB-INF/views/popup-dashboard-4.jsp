@@ -274,7 +274,7 @@ function initialize() {
 						'</h4>'+
 				    '</div>'+
 
-					'<div id="collapse4" class="panel-collapse collapse in">'+			      	      
+					'<div id="collapse4" class="panel-collapse collaps">'+			      	      
 					'<div class="panel-body">'+
 					
 	        	'<table class="table table-bordered">'+	        		
